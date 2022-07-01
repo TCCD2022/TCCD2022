@@ -1,5 +1,5 @@
 $( function() {
-    var dialog, form,
+    var dialog, form;
 	// From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
 
       function saveChange() {
