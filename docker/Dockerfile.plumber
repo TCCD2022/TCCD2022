@@ -1,0 +1,22 @@
+FROM rstudio/plumber:next
+
+RUN apt update && \
+	apt install -y libpq-dev \
+	libxml2-dev \
+	libpng-dev
+	# \
+	# texlive-latex-extra \
+	# texinfo
+
+RUN install2.r  --error \
+	-r "https://cran.rstudio.com" \
+	-r "http://www.bioconductor.org/packages/release/bioc" \
+	data.table \
+	jsonlite \
+	ggplot2 \
+	filehash \
+	tikzDevice \
+	ggfortify \
+	tinytex
+
+COPY Rsrc /code/

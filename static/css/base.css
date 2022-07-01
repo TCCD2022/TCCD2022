@@ -1,0 +1,112 @@
+/* static/css/base.css */
+
+/* html,body { */
+/*     height: 100%; */
+/* } */
+
+h3 {
+    color: red;
+}
+
+.selected {
+    background-color: #cbd5e8;
+    font-weight: bold;
+}
+
+/* .results_list { */
+/*     width: 25%; */
+/* } */
+
+#filedocuments {
+    height: 60vh;
+    overflow-y:scroll;
+    overflow-x:scroll;
+}
+
+ /* Remove default bullets */
+ul, #mydocs {
+    list-style-type: none;
+}
+
+/* Remove margins and padding from the parent ul */
+#mydocs {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the caret/arrow */
+.caret {
+    cursor: pointer;
+    display: flex;
+    /* user-select: none; /* Prevent text selection */
+}
+
+.fcol {
+    margin: 0;
+    padding: 0;
+}
+
+/* Create the caret/arrow with a unicode, and style it */
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-flex;
+  margin-right: 6px;
+}
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.caret-down::before {
+  transform: rotate(90deg);
+}
+
+/* Hide the nested list */
+.nested {
+    display: none;
+}
+
+/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+.active {
+    display: block;
+    cursor: pointer;
+}
+
+
+/* .parent > * { */
+/*     /\* width: 100%; *\/ */
+/*     /\* /\\* height: 20px; *\\/ *\/ */
+/*     /\* display: inline-block; *\/ */
+/*     /\* overflow-x: auto; *\/ */
+/*     display: inline-block; */
+/* } */
+
+/* input{ */
+/*   margin: 0; */
+/*   padding: 0; */
+/*     border: 1px solid; */
+/* } */
+
+.parent {
+  margin: 0;
+  padding: 0;
+    display: inline-flex;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /* border: 1px solid; */
+}
+
+.ihide {
+    display: none;   
+}
+
+.fcol:hover + .ihide,
+.ihide:hover {
+    display: flex;
+}
+
+/* .row > div { */
+/*   flex: 1; */
+/*   background: lightgrey; */
+/*   border: 1px solid grey; */
+/* } */

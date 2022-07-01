@@ -1,0 +1,13 @@
+<!-- templates/books/book_list.html -->
+{% extends 'home.html' %}
+
+{% block title %}Datafiles{% endblock title %}
+
+
+{% block columns %}
+<ul class="nested">
+  {% for colum in colum_list %}
+    <li>{{column.name}}</li>
+  {% endfor %}
+</u>
+{% block columns %}

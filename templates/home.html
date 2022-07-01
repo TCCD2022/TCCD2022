@@ -1,0 +1,103 @@
+<!-- templates/home.html -->
+{% extends '_base.html' %}
+
+{% load static %}
+
+{% load template_filters %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="row">
+  {% if user.is_authenticated %}
+  <div class="col-3">
+    <div class="col-12 border bg-light" id="filedocuments" >
+      {% if documents %}
+      <ul id = "mydocs">
+          {% for document in documents %}
+      	  <li class = "mydoc">
+	    <a class = "caret nav-link context-menu-one" id = "{{document.id}}" data-toggle="tooltip"
+		    {% if document.supported == True %}
+		    title = "Rows: {{ document.num_rows }}, Columns: {{ document.num_cols }}"
+		    {% elif document.supported == False %}
+		    title = "File not supported --{{document.docfile.supported.value }}"
+		    {% else %} title = "Metadata not extracted"
+		    {% endif %}
+		 doc-url="{{ document.get_absolute_url }}" 
+		 clean-metadoc-url="{{ document.get_absolute_url_clean }}"
+		 find-file-results-url="{{document.get_find_file_res_url}}">
+	      {{document.docfile.name}}
+	    </a> 
+	    <ul class="nested">
+	    	{% for col in cols|get_item:document.pk %}
+	    	<li>
+		  <div class="parent">
+		    <input type="checkbox" id= "{{ col.id }}" value = "{{ col.name }}">
+		    <label class = "nav-link context-menu-cols fcol"
+			   col-id = "{{ col.id }}"
+			   for = "{{ col.id }}"
+			   title = "{{ col.get_col_type_display }}, {{col.get_scale_display}}"
+			   vis-col-url= "{{ col.get_find_col_vis_url }}">
+		      &nbsp;{{ col.name }}
+		    </label>
+
+
+		    <button class="ihide fa fa-edit  edit-col-type"></button>
+		    <!-- fa  fa-pencil -->
+		  </div>
+		</li>	
+	    	{% endfor %}
+	      </ul>
+          {% endfor %}
+	  </li>
+      </ul> <!-- mydocs -->
+    {% else %}
+        <p>No documents.</p>
+    {% endif %}
+    </div> <!-- filedocuments -->
+    <div class="col-12 border bg-light" id="uploadform">
+      <!-- Upload form. Note enctype attribute! -->
+      <form action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.non_field_errors }}</p>
+        <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+        <p>{{ form.userid }}</p>
+        <p>
+            {{ form.docfile.errors }}
+            {{ form.docfile }}
+        </p>
+        <p><input type="submit" value="Upload" /></p>
+      </form>
+      <p><a href="{% url 'logout' %}">Log Out</a></p>
+    </div> <!-- uploadform -->
+  </div>
+  <div class="col-9 border bg-light">
+    <label for="fc_results" id="file_col_name">No data file selected</label>
+    <select class="results_list" id="fc_results" style="width: 25%"></select>
+    <!-- <label for="fc_method" id="selected_method">Select Method</label> -->
+    <select class="methods_list" id="fc_method" style="width: 25%"><option> </option></select>
+    <button class="fa fa-server" id="runmethod"> Parameters</button>
+      <iframe  id = "panel-res" src="static/mdocs/Data_Voyager-DVPipeline.drawio.pdf"
+	       frameBorder="0"
+	       scrolling="auto"
+	       height="100%"
+	       width="100%">
+      </iframe>
+</div>
+  </div>
+{% else %}
+<div class="container">
+    <p>You are not logged in</p>
+    <a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" href="{% url 'login' %}">Log In</a>
+    <a class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+    </div>
+</div>
+
+{% include 'edit-coltype.html' %}
+{% include 'run_method.html' %}
+
+<div class="row flex-shrink-0">
+  <div class="col-12 border">Footer </div>
+</div>
+{% endblock content %}

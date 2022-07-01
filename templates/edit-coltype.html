@@ -1,0 +1,59 @@
+<div id="dialog-form" title="Edit data type and scale">
+ 
+  <form>
+    <fieldset>
+      <div class="container">
+	<label id="chtype"></label><br>
+	<div class="row">
+	  <div class = "col">
+	    <p class="validateTips">Type:</p>
+	    <input type="radio" id="IN" name="coltype" value="Integer">
+	    <label for="IN">Integer</label><br>
+	    <input type="radio" id="DB" name="coltype" value="Double">
+	    <label for="css">Double</label><br>
+	    <input type="radio" id="ST" name="coltype" value="String">
+	    <label for="ST">String</label><br>
+	    <input type="radio" id="DT" name="coltype" value="Date">
+	    <label for="DT">Date</label><br>
+	    <input type="radio" id="BL" name="coltype" value="Boolean">
+	    <label for="BL">Boolean</label><br>
+	    <input type="radio" id="UK" name="coltype" value="Other">
+	    <label for="UK">Other</label>
+	  </div>
+
+	  <div class = "col">
+	    <p>Scale:</p>
+	    <input type="radio" id="CT" name="scale" value="Continuous">
+	    <label for="CT">Continuous</label><br>
+	    <input type="radio" id="DS" name="scale" value="Discrete">
+	    <label for="DS">Discrete</label><br>
+	    <input type="radio" id="OD" name="scale" value="Ordinal">
+	    <label for="OD">Ordinal</label><br>
+    	    <input type="radio" id="NM" name="scale" value="Nominal">
+	    <label for="OD">Nominal</label><br>
+	  </div>
+	</div>
+      </div>
+       <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+
+<!-- <div id="dialog-form" title="Create new user"> -->
+<!--   <p class="validateTips">All form fields are required.</p> -->
+ 
+<!--   <form> -->
+<!--     <fieldset> -->
+<!--       <label for="name">Name</label> -->
+<!--       <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all"> -->
+<!--       <label for="email">Email</label> -->
+<!--       <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all"> -->
+<!--       <label for="password">Password</label> -->
+<!--       <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all"> -->
+ 
+<!--       <\!-- Allow form submission with keyboard without duplicating the dialog button -\-> -->
+<!--       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px"> -->
+<!--     </fieldset> -->
+<!--   </form> -->
+<!-- </div> -->

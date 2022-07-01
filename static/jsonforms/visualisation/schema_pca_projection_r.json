@@ -1,0 +1,55 @@
+{
+    "type":"object",
+    "properties": {
+	"colour": {
+	    "title":"colour",
+	    "description": "Categorical variable to colour the projected points",
+	    "enum": ["--No variable--"]
+	},
+	"scale":{
+	    "title": "Scale",
+	    "description": "Scale variables",
+	    "type": "boolean",
+	    "default":true,
+	    "required": true
+	},
+	"biplot":{
+	    "title": "Biplot",
+	    "description": "Display biplot (loadings)",
+	    "type": "boolean",
+	    "default":true,
+	    "required": true
+	},
+	"height":{
+	    "title": "Height",
+	    "description": "Height in centimeters",
+	    "type": "number",
+	    "default":10,
+	    "minimum":1,
+	    "maximum":2000,
+	    "required": true
+	},
+	"width":{
+	    "title": "Width",
+	    "description": "Width in centimeters",
+	    "type": "number",
+	    "default":15,
+	    "minimum":1,
+	    "maximum":2000,
+	    "required": true
+	},
+	"title":{
+	    "title": "Title",
+	    "type": "string"
+	},
+	"caption":{
+	    "title": "Caption",
+	    "type": "string"
+	},
+	"comment": {
+	    "title": "Comment",
+	    "description": "Stored in the db, not shown in the result",
+	    "type": "string"
+	}	
+    }
+}
