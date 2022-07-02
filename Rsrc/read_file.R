@@ -2,17 +2,20 @@ library(plumber)
 library(jsonlite)
 library(data.table)
 library(ggplot2)
-library(tikzDevice)
 library(xfun)
 library(ggfortify)
 
 
 FOLDER_RESULTS <- 'dvg--results-'
+
+# Shared volume
 MEDIA_FOLDER <- "/code/media/"
+
+# current working directory
 cd <- getwd()
 
-# Sys.setenv(R_TEXI2DVICMD='emulation')
 
+# filename: csv file variable common to all data analysis methods
 
 #* Extracts file metadata such as number of rows, columns and file size
 #* @param filename full file path
@@ -29,11 +32,35 @@ function(filename){
   )
 }
 
+
+# medatadata: json structure that includes:
+# filename: csv file path
+# col_ids: is a structure containing information about the variables to be used
+# 	   'colid' column ids,
+#          'colname' column/variable names
+#	   'type' variable types and
+#	   'scale' scale of the variables columns 
+
+
 #* Projection based on principal component analysis
 #* @post /pca
 function(metadata){
 
-  # TODO: use column types
+  # INPUT 
+  # colour: categorical variable to color data points
+  # scale: boolean variable
+  # biplot: boolean variable to include a biplot or not
+  # height: height of the plot in cm
+  # width: width of the plot in cm
+  # title: title of the plot
+  # caption: caption of the plot
+
+  # OUTPUT
+  # file plot saved in the shared filesystem
+  # list including filepath and fileformat
+
+  # TODO: handle exceptions
+
   mdat <- fromJSON(metadata)
   
   mcols <- as.data.table(mdat$col_ids)
@@ -48,7 +75,8 @@ function(metadata){
   print(as.data.table(mdat$col_ids))
   print(mdat$height)
   print(mdat$width)
-  
+
+  # full path of the filename
   filename <- paste0(MEDIA_FOLDER,mdat$filename)
   
   dpath <- dirname(filename)
@@ -64,7 +92,7 @@ function(metadata){
     # create a new sub directory inside
     dir.create(respath)
   }
-  
+
   pcacols <- mcols[,colname]
   
   print(pcacols)
@@ -81,6 +109,8 @@ function(metadata){
   # PCA
   tpca <- prcomp(Filter(is.numeric,cols[,..pcacols]),scale=pscale)
   summary(tpca)
+
+  # projection plot
   
   p <- autoplot(tpca, data = cols, colour = colorear,loadings = pbiplot, loadings.colour = 'black',
                   loadings.label = pbiplot, loadings.label.colour = 'black', loadings.label.size = 4) +
@@ -92,20 +122,13 @@ function(metadata){
   p <- p + theme(plot.title = element_text(hjust = 0.5))
   
   now <- Sys.time()
-#  filenametex <- file.path(respath,paste0(tmpfilename,"-pca",format(now, "%Y%m%d_%H%M%S"),".tex"))
   filenamepdf <- file.path(respath,paste0(tmpfilename,"-pca",format(now, "%Y%m%d_%H%M%S"),".pdf"))
   print(filenamepdf)
   cmwidth <- mdat$width
   cmheight <- mdat$height
+  
   ggsave(filenamepdf, width = cmwidth, height = cmheight, units = "cm")
-  # tikz(filenametex,standAlone = TRUE, sanitize=TRUE, width = cmwidth, height = cmheight)
-  # print(p)
-  # dev.off()
-  # setwd(respath)
-  # # print(getwd())
-  # tools::texi2dvi(filenametex,pdf=T)
-  # setwd(cd)
-  # TODO: remove tex auxiliary files
+
   list(
     pdffile = filenamepdf,
     format = 'pdf'

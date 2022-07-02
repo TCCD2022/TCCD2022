@@ -14,7 +14,7 @@
     {
 	"model": "datafiles.Method",
 	"fields": {
-	    "id": 6,
+	    "id": 2,
 	    "name" : "PCA v0.0.0",
 	    "description" : "Principal component Analysis.",
 	    "prog_language" : "R",
