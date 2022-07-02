@@ -41,6 +41,7 @@ function(filename){
 #	   'type' variable types and
 #	   'scale' scale of the variables columns 
 
+# autor: Venustiano Soancatl Aguilar
 
 #* Projection based on principal component analysis
 #* @post /pca
