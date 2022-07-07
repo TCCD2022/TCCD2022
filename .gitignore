@@ -178,3 +178,5 @@ flycheck_*.el
 .dir-locals.el
 
 staticfiles/
+
+.idea
