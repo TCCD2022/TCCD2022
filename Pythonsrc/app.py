@@ -6,10 +6,13 @@ from flask import request
 
 app = Flask(__name__)
 
+
+"""
+    post: /lr
+    Projection of the linear regression of two columns of numbers.
+"""
 @app.route('/lr',methods = ['POST'])
 def linearRegression():
-    #print("En app /lr")
-    #print("Request form get list...,  ", request.form.getlist("metadata"))
     values =  json.loads(request.form.getlist("metadata")[0])
     result = linearRegressionMethod(values)
     return result
