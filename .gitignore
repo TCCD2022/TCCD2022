@@ -178,3 +178,5 @@ flycheck_*.el
 .dir-locals.el
 
 staticfiles/
+#File 
+static/mdocs/visualization/Linear_Regression_Plot_pdf.pdf:Zone.Identifier
