@@ -20,6 +20,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import com.example.proyectotccd.domain.PdfFiles
 
 @Service
 class MeanService(
@@ -33,7 +34,7 @@ class MeanService(
         val logger: Logger = LoggerFactory.getLogger(MeanService::class.java)
     }
 
-    fun createMean(metadata: Metadata): String {
+    fun createMean(metadata: Metadata): PdfFiles {
         val colNames = arrayListOf<String>()
         val columnsIds = metadata.metadata.colIds.mapNotNull {
             if (TYPES.contains(it.type.lowercase())) {
@@ -51,9 +52,11 @@ class MeanService(
 
         val meanResult = mean(doubleMatrix)
 
-        return generatePDF(meanResult, dirName.split("/").last(), colNames).also {
+        val filePath = generatePDF(meanResult, dirName.split("/").last(), colNames).also {
             logger.info("File generated on path $it")
         }
+
+        return PdfFiles(listOf(filePath))
 
     }
 
@@ -123,8 +126,6 @@ class MeanService(
 
         pdfContentByte.addTemplate(pdfTemplate, 40f, 500f) //0, 0 will draw BAR chart on bottom left of page
         graphics2d.dispose()
-        pdfTemplate.restoreState()
-        pdfTemplate.restoreState()
         document.close()
 
         return filePath

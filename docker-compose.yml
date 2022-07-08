@@ -51,6 +51,17 @@ services:
       - 8181:8181
     networks:
       - dvyy
+  mean:
+   build:
+     context: .
+     dockerfile: ./docker/Dockerfile.mean
+   volumes:
+      - ./Mean:/code
+      - mediac:/code/media
+   ports:
+      - 8080:8080
+   networks:
+      - dvyy
 networks:
   dvyy:
     driver: bridge
