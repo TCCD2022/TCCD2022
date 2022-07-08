@@ -11,24 +11,39 @@ import org.jfree.chart.labels.StandardCategoryItemLabelGenerator
 import org.jfree.chart.plot.PlotOrientation
 import org.jfree.chart.renderer.category.StackedBarRenderer
 import org.jfree.data.category.DefaultCategoryDataset
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.awt.geom.Rectangle2D
 import java.io.File
 import java.io.FileOutputStream
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Service
-class MeanService(@Value("\${app.file-location.pdf}") val destinationPath: String) {
+class MeanService(
+    @Value("\${app.file-location.pdf}") val destinationPath: String,
+    @Value("\${app.file-location.csv}") val csvPath: String,
+    ) {
+
+    companion object {
+        val TYPES = setOf("double", "integer")
+        val DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
+        val logger: Logger = LoggerFactory.getLogger(MeanService::class.java)
+    }
 
     fun createMean(metadata: Metadata): String {
-        val columnsIds = metadata.metadata.let {
-            it.colIds.filter {
-                it.type == "Double"
-            }.map {
+        val colNames = arrayListOf<String>()
+        val columnsIds = metadata.metadata.colIds.mapNotNull {
+            if (TYPES.contains(it.type.lowercase())) {
+                colNames.add(it.colname)
                 it.colid.toInt()
+            } else {
+                null
             }
         }
+        logger.info("Calculating mean for file ${metadata.metadata.filename} and ${columnsIds.size} columns")
 
         val dirName = metadata.metadata.filename
 
@@ -36,12 +51,14 @@ class MeanService(@Value("\${app.file-location.pdf}") val destinationPath: Strin
 
         val meanResult = mean(doubleMatrix)
 
-        return generate(meanResult, dirName.split("/").last())
+        return generatePDF(meanResult, dirName.split("/").last(), colNames).also {
+            logger.info("File generated on path $it")
+        }
 
     }
 
-    fun readCsv(path: String, index: List<Int>): List<List<Double>> {
-        val file = File(path)
+    private fun readCsv(path: String, index: List<Int>): List<List<Double>> {
+        val file = File("$csvPath/$path")
         val result = csvReader().readAll(file)
         val doubleMatrix: MutableList<List<Double>> = arrayListOf()
         result.forEachIndexed { i, row ->
@@ -56,11 +73,11 @@ class MeanService(@Value("\${app.file-location.pdf}") val destinationPath: Strin
         return doubleMatrix
     }
 
-    fun generate(means: List<Double>, path: String): String {
+    private fun generatePDF(means: List<Double>, baseName: String, cols: List<String>): String {
 
         val dataset = DefaultCategoryDataset().apply {
             means.forEachIndexed { i, m ->
-                setValue(m, "test 1", "columna ${i + 1}")
+                setValue(m, "mean", cols[i])
             }
         }
 
@@ -79,7 +96,7 @@ class MeanService(@Value("\${app.file-location.pdf}") val destinationPath: Strin
 
         val now = LocalDateTime.now()
 
-        val filePath = "${destinationPath}/${path}-mean-${now}.pdf"
+        val filePath = "${destinationPath}/${baseName}-mean-${now.format(DATE_FORMATTER)}.pdf"
         val fos = FileOutputStream(File(filePath))
         val document = Document()
         val writer = PdfWriter.getInstance(document, fos)
@@ -87,12 +104,9 @@ class MeanService(@Value("\${app.file-location.pdf}") val destinationPath: Strin
         document.open()
         val pdfContentByte = writer.directContent
         val width = 500 //width of BarChart
-
         val height = 300 //height of BarChart
 
         val pdfTemplate = pdfContentByte.createTemplate(width.toFloat(), height.toFloat())
-
-        //create graphics
 
         //create graphics
         PdfGraphics2D(pdfTemplate, width.toFloat(), height.toFloat(), DefaultFontMapper())
@@ -116,7 +130,7 @@ class MeanService(@Value("\${app.file-location.pdf}") val destinationPath: Strin
         return filePath
     }
 
-    fun mean(values: List<List<Double>>): List<Double> {
+    private fun mean(values: List<List<Double>>): List<Double> {
         val result = arrayListOf<Double>().apply {
             repeat(values.first().size) {
                 add(0.0)

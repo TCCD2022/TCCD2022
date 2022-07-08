@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
-@RestController("/mean")
+@RestController
 class MeanController(val meanService: MeanService) {
 
-    @PostMapping("/createMean")
+    @PostMapping("/calculate")
     fun createMean(@RequestBody metadata: Metadata): String{
         return meanService.createMean(metadata)
     }
