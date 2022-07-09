@@ -181,5 +181,6 @@ staticfiles/
 
 # Java containers
 java-springboot-src/.idea/
+.idea/
 java-springboot-src/method/.gitignore
 
