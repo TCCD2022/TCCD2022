@@ -1,0 +1,4 @@
+FROM openjdk:8-alpine
+ARG JAR_FILE=../java-springboot-src/method/target/method-0.0.1-SNAPSHOT.war
+COPY ${JAR_FILE} api.war
+ENTRYPOINT ["java","-jar","/api.war"]

@@ -178,3 +178,8 @@ flycheck_*.el
 .dir-locals.el
 
 staticfiles/
+
+# Java containers
+java-springboot-src/.idea/
+java-springboot-src/method/.gitignore
+

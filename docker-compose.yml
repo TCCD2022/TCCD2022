@@ -51,6 +51,18 @@ services:
       - 8181:8181
     networks:
       - dvyy
+  # java SpringBoot conatiner
+  java-springboot:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.java-springboot
+    volumes:
+      - ./java-springboot-src:/code
+      - mediac:/code/media
+    ports:
+      - 8182:8182
+    networks:
+      - dvyy
 networks:
   dvyy:
     driver: bridge
