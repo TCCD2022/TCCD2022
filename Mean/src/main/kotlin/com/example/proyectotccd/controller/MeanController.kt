@@ -1,6 +1,5 @@
 package com.example.proyectotccd.controller
 
-import com.example.proyectotccd.domain.Metadata
 import com.example.proyectotccd.domain.FileInfo
 import com.example.proyectotccd.domain.PdfFiles
 import com.example.proyectotccd.service.MeanService
@@ -20,11 +19,11 @@ class MeanController(val meanService: MeanService, val mapper: ObjectMapper) {
 
     @PostMapping(path = ["/calculate"], consumes = ["application/x-www-form-urlencoded;charset=UTF-8"])
     fun createMean(@RequestBody metadata: String): PdfFiles{
-        logger.info("$metadata")
-        val metadaInfo = metadata.split("=")[1]
-        val metadataDecode = java.net.URLDecoder.decode(metadaInfo, StandardCharsets.UTF_8.displayName());
-        logger.info("$metadataDecode")
-        return meanService.createMean(Metadata(mapper.readValue(metadataDecode, FileInfo::class.java)))
+        logger.info("request body $metadata")
+        val metadataInfo = metadata.split("=")[1]
+        val metadataDecode = java.net.URLDecoder.decode(metadataInfo, StandardCharsets.UTF_8.displayName());
+        logger.info("processing request $metadataDecode")
+        return meanService.createMean(mapper.readValue(metadataDecode, FileInfo::class.java))
     }
 
 }

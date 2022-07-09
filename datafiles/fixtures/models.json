@@ -28,10 +28,10 @@
       "fields":{
          "id":3,
          "name":"Mean v0.0.0",
-         "description":"Principal component Analysis.",
+         "description":"Mean calculation.",
          "prog_language":"KT",
          "url_service":"http://mean:8080/mean/calculate",
-         "json_schema":"static/jsonforms/visualisation/schema_pca_projection_r.json",
+         "json_schema":"static/jsonforms/visualisation/schema_mean_kotlin.json",
          "doc_file":"static/mdocs/visualization/PCA_projection.pdf "
       }
    }

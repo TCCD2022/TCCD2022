@@ -1,6 +1,6 @@
 package com.example.proyectotccd.service
 
-import com.example.proyectotccd.domain.Metadata
+import com.example.proyectotccd.domain.FileInfo
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.itextpdf.awt.DefaultFontMapper
 import com.itextpdf.awt.PdfGraphics2D
@@ -21,6 +21,8 @@ import java.io.FileOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import com.example.proyectotccd.domain.PdfFiles
+import org.jfree.chart.renderer.category.StandardBarPainter
+import java.awt.Color
 
 @Service
 class MeanService(
@@ -34,9 +36,9 @@ class MeanService(
         val logger: Logger = LoggerFactory.getLogger(MeanService::class.java)
     }
 
-    fun createMean(metadata: Metadata): PdfFiles {
+    fun createMean(metadata: FileInfo): PdfFiles {
         val colNames = arrayListOf<String>()
-        val columnsIds = metadata.metadata.colIds.mapNotNull {
+        val columnsIds = metadata.colIds.mapNotNull {
             if (TYPES.contains(it.type.lowercase())) {
                 colNames.add(it.colname)
                 it.colid.toInt()
@@ -44,15 +46,15 @@ class MeanService(
                 null
             }
         }
-        logger.info("Calculating mean for file ${metadata.metadata.filename} and ${columnsIds.size} columns")
+        logger.info("Calculating mean for file ${metadata.filename} and ${columnsIds.size} columns")
 
-        val dirName = metadata.metadata.filename
+        val dirName = metadata.filename
 
         val doubleMatrix = readCsv(dirName, columnsIds)
 
         val meanResult = mean(doubleMatrix)
 
-        val filePath = generatePDF(meanResult, dirName.split("/").last(), colNames).also {
+        val filePath = generatePDF(meanResult, dirName.split("/").last(), colNames, metadata.title, metadata.colour).also {
             logger.info("File generated on path $it")
         }
 
@@ -76,7 +78,7 @@ class MeanService(
         return doubleMatrix
     }
 
-    private fun generatePDF(means: List<Double>, baseName: String, cols: List<String>): String {
+    private fun generatePDF(means: List<Double>, baseName: String, cols: List<String>, title: String, colour: String): String {
 
         val dataset = DefaultCategoryDataset().apply {
             means.forEachIndexed { i, m ->
@@ -85,7 +87,7 @@ class MeanService(
         }
 
         val jFreeChart = ChartFactory.createBarChart(
-            "Mean Calculator",
+            title,
             "Column",
             "Mean value",
             dataset,
@@ -95,6 +97,8 @@ class MeanService(
         val renderer = StackedBarRenderer(false)
         renderer.defaultItemLabelGenerator = StandardCategoryItemLabelGenerator()
         renderer.setDefaultItemLabelsVisible(true, true)
+        renderer.barPainter = StandardBarPainter()
+        renderer.setSeriesPaint(0, getColour(colour))
         jFreeChart.categoryPlot.renderer = renderer
 
         val now = LocalDateTime.now()
@@ -126,10 +130,22 @@ class MeanService(
 
         pdfContentByte.addTemplate(pdfTemplate, 40f, 500f) //0, 0 will draw BAR chart on bottom left of page
         graphics2d.dispose()
+        pdfTemplate.restoreState()
+        pdfTemplate.restoreState()
         document.close()
 
         return filePath
     }
+
+    private fun getColour(colour: String) = when(colour) {
+            "orange" -> Color.ORANGE
+            "yellow" -> Color.YELLOW
+            "blue" -> Color.BLUE
+            "magenta" -> Color.MAGENTA
+            "pink" -> Color.PINK
+            "red" -> Color.RED
+            else -> Color.RED
+        }
 
     private fun mean(values: List<List<Double>>): List<Double> {
         val result = arrayListOf<Double>().apply {
