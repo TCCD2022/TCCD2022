@@ -7,7 +7,7 @@ from pathlib import Path
 import os
 import json
 from datetime import datetime
-"""   
+"""
  This method returns the plot corresponding to the linear
  regression of the first two columns indicated in the received parameter
  Parameters:
@@ -43,8 +43,8 @@ def linearRegressionMethod(data):
     pathName = '/code/media/'+ currentPath +'dvg--results-/'+ currentNameFile + "/"
     fileName = pathName + data["title"]+ date +".pdf" 
     if (os.path.exists(pathName) == False):
-    	path = Path(pathName)
-    	path.mkdir(parents=True)
+        path = Path(pathName)
+        path.mkdir(parents=True)
     #Plot
     sns.regplot(x, y,color=colorPlot).set(title=titlePlot)
     plt.savefig(fileName)
