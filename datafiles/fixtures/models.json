@@ -1,26 +1,37 @@
 [
-    {
-	"model": "datafiles.Method",
-	"fields": {
-	    "id": 1,
-	    "name" : "Extract metadata v0.0.0",
-	    "description" : "Extracts number of rows and columns, and finds column types",
-	    "prog_language" : "R",
-	    "url_service" : "http://plumber:8181/coltypes",
-	    "json_schema" : "static/jsonforms/standard/schema_extract_metadata.json",
-	    "doc_file": "static/mdocs/standard/Extract_metadata.pdf"
+	{
+		"model": "datafiles.Method",
+		"fields": {
+			"id": 1,
+			"name": "Extract metadata v0.0.0",
+			"description": "Extracts number of rows and columns, and finds column types",
+			"prog_language": "R",
+			"url_service": "http://plumber:8181/coltypes",
+			"json_schema": "static/jsonforms/standard/schema_extract_metadata.json",
+			"doc_file": "static/mdocs/standard/Extract_metadata.pdf"
+		}
+	},
+	{
+		"model": "datafiles.Method",
+		"fields": {
+			"id": 2,
+			"name": "PCA v0.0.0",
+			"description": "Principal component Analysis.",
+			"prog_language": "R",
+			"url_service": "http://plumber:8181/pca",
+			"json_schema": "static/jsonforms/visualisation/schema_pca_projection_r.json",
+			"doc_file": "static/mdocs/visualization/PCA_projection.pdf "
+		}
+	},
+	{
+		"model": "datafiles.Method",
+		"fields": {
+			"id": 3,
+			"name": "M-JDM v0.0.0",
+			"description": "Calculate mean using flask.",
+			"prog_language": "python",
+			"url_service": "http://mean-jdm:5555/mean",
+			"json_schema": "static/jsonforms/visualisation/schema_mean_jdm.json"
+		}
 	}
-    },
-    {
-	"model": "datafiles.Method",
-	"fields": {
-	    "id": 2,
-	    "name" : "PCA v0.0.0",
-	    "description" : "Principal component Analysis.",
-	    "prog_language" : "R",
-	    "url_service" : "http://plumber:8181/pca",
-    	    "json_schema": "static/jsonforms/visualisation/schema_pca_projection_r.json",
-	    "doc_file": "static/mdocs/visualization/PCA_projection.pdf "
-	}
-    }
 ]

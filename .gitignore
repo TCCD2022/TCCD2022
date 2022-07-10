@@ -178,3 +178,4 @@ flycheck_*.el
 .dir-locals.el
 
 staticfiles/
+__pycache__/*

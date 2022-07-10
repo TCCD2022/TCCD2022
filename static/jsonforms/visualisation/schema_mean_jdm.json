@@ -1,0 +1,14 @@
+{
+	"type": "object",
+	"properties": {
+		"title": {
+			"title": "Title",
+			"type": "string"
+		},
+		"comment": {
+			"title": "Comment",
+			"description": "Mean by Juan David Murillo Giraldo",
+			"type": "string"
+		}
+	}
+}
