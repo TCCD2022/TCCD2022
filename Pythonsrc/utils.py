@@ -63,21 +63,32 @@ def correlation_plot_method(data):
     cols = [col['colname'] for col in data['col_ids']]
     df = pd.read_csv('/code/media/'+fileName, usecols=cols)
 
-    print('si entro')
-
     plt.style.use('seaborn')
-    #sns.set(font_scale = 1.2)
     sns.heatmap(df.corr(), annot = True,cmap='RdYlBu',vmin=-1.0,vmax=1.0)
 
-    # pathName = '/code/media/'+ currentPath +'dvg--results-/'+ currentNameFile + "/"
-    # fileName = pathName + data["title"]+ date +".pdf" 
-    # if (os.path.exists(pathName) == False):
-    #     path = Path(pathName)
-    #     path.mkdir(parents=True)
-    date = str(datetime.now())
-    filename_pdf = '/code/media/'+ fileName.split('/')[-1].split('.')[0] + "_corr.pdf" 
-    plt.savefig(filename_pdf)
+    filename = get_filename(data['filename'])
     
-    print("Correlation plot....",filename_pdf)
-    return {"pdffile":[filename_pdf], "format":["pdf"]}
+    plt.savefig(filename,format='pdf',bbox_inches='tight')
+    plt.clf()
+    print("Correlation plot....",filename)
+    return {"pdffile":[filename], "format":["pdf"]}
     # pass
+
+def get_filename(data_filename,user_filename):
+    tmp =  data_filename.split("/")[:-1]
+    currentPath = "/".join(tmp)
+    currentNameFile = data_filename.split("/").pop()
+    print("currentPath...", currentPath)
+    print("currentName...", currentNameFile)
+    date = str(datetime.now().strftime('_%m%d%Y_%H%M')) #add month,day,year,hour,minute
+    pathName = '/code/media/'+ currentPath +'dvg--results-/'+ currentNameFile + "/"
+    # Use default filename or a name setn by user
+    if user_filename != '':
+        fileName = pathName + user_filename + date +".pdf" 
+    else:
+        fileName = pathName + data_filename + date +".pdf" 
+
+    if (os.path.exists(pathName) == False):
+        path = Path(pathName)
+        path.mkdir(parents=True)
+    return fileName

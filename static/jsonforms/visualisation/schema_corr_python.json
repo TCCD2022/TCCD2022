@@ -1,14 +1,23 @@
 {
     "type":"object",
     "properties": {
-		"title":{
-		  "title": "Title",
-				"type": "string"
-		},
-		"colour": {
-		  "title":"colour",
-				"description": "Primera modificacion",
-				"enum": ["probando"]
-		}
-	  }
+        "title": {
+            "title": "Figure Title",
+            "description": "Title for the figure",
+            "type": "string"
+          },
+          "annot": {
+            "title": "Annotations",
+            "description": "Whether or not to put numbers inside the graph ",
+            "type": "string",
+            "enum": [
+              "Yes",
+              "No"]
+          },
+          "save": {
+            "title": "Save as",
+            "description": "Name for saving the image",
+            "type": "string"
+          }
+      }
 }
