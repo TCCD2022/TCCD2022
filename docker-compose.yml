@@ -51,6 +51,17 @@ services:
       - 8181:8181
     networks:
       - dvyy
+  mean-jdm:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.mean-flask-jdm
+    command: cd /code/ && flask run
+    volumes:
+      - ./jdm-python-mean:/code
+    ports:
+      - 5555:5000
+    networks:
+      - dvyy
 networks:
   dvyy:
     driver: bridge

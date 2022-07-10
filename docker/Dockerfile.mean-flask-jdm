@@ -1,0 +1,9 @@
+FROM python:3.8
+
+COPY ./docker/requirements-mean-jdm.txt  /tmp
+
+WORKDIR /tmp
+
+RUN pip3 install -r requirements-mean-jdm.txt
+
+COPY jdm-python-mean /code/
