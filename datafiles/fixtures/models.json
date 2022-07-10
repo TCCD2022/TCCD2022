@@ -32,7 +32,7 @@
 			"prog_language": "py",
 			"url_service": "http://mean-jdm:5555/mean",
 			"json_schema": "static/jsonforms/visualisation/schema_mean_jdm.json",
-			"doc_file": "static/mdocs/visualization/JDM-Mean-Projection.pdf "
+			"doc_file": "static/mdocs/visualization/JDM-Mean.pdf "
 		}
 	}
 ]

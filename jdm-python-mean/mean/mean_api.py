@@ -27,12 +27,16 @@ class MeanApi(Resource):
     def get(self):
         return {"data": "Mean API working..."}
 
-    def post(self):
+    def post(self, data):
         # Verify the datatype of the request body
-        args = mean_post_args.parse_args()
+        # args = mean_post_args.parse_args()
 
         # Get the data
-        data = args["data"]
+        # data = args["data"]
+
+        print('   ')
+        print(data)
+        print('  ')
 
         try:
             data = [float(number) for number in data.split(",")]

@@ -15,3 +15,10 @@ api = Api(app)
 
 # Generate the endpoint routing
 api.add_resource(MeanApi, "/mean")
+
+# from utils.calculator import Calculator
+
+# data = open("/utils/exergamingresults.csv")
+
+# calculator = Calculator(data)
+# # calculator.test()
