@@ -42,7 +42,6 @@ $( function() {
 		   values.filename = filename;
 		   values.col_ids = listcolids;
 		   values.methodid = methodid;
-		   console.log(values);
 		   let url3 = "runmethod/" + values.methodid;
 		   $.ajax({
 		       url:url3,

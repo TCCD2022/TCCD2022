@@ -1,0 +1,11 @@
+
+FROM python:3.8
+
+
+COPY ./docker/requirementsRp.txt  /tmp
+
+WORKDIR /tmp
+
+RUN pip install -r requirementsRp.txt
+
+COPY relplot /code/

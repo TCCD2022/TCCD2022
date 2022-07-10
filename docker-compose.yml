@@ -51,6 +51,20 @@ services:
       - 8181:8181
     networks:
       - dvyy
+
+  relplot:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.python
+    command: python /code/appController.py
+    volumes:
+      - ./relplot:/code
+      - mediac:/code/media
+    ports:
+      - 4001:4001
+    networks:
+      - dvyy
+
 networks:
   dvyy:
     driver: bridge
