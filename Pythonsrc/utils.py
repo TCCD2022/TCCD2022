@@ -1,6 +1,7 @@
 import seaborn as sns
 from matplotlib import pyplot as plt
 from pandas import *
+import pandas as pd
 from csv import reader
 import numpy as np
 from pathlib import Path
@@ -51,3 +52,32 @@ def linearRegressionMethod(data):
     print("linearRegression....",fileName)
     return {"pdffile":[fileName], "format":["pdf"]}
 
+def correlation_plot_method(data):
+    '''
+    This method returns a correlation plot between the selected variables
+    Parameters:
+        data: Object with the necessary information to construct the plot: file name, 
+        column names, plot title and dimensions. 
+    '''
+    fileName = data["filename"]
+    cols = [col['colname'] for col in data['col_ids']]
+    df = pd.read_csv('/code/media/'+fileName, usecols=cols)
+
+    print('si entro')
+
+    plt.style.use('seaborn')
+    #sns.set(font_scale = 1.2)
+    sns.heatmap(df.corr(), annot = True,cmap='RdYlBu',vmin=-1.0,vmax=1.0)
+
+    # pathName = '/code/media/'+ currentPath +'dvg--results-/'+ currentNameFile + "/"
+    # fileName = pathName + data["title"]+ date +".pdf" 
+    # if (os.path.exists(pathName) == False):
+    #     path = Path(pathName)
+    #     path.mkdir(parents=True)
+    date = str(datetime.now())
+    filename_pdf = '/code/media/'+ fileName.split('/')[-1].split('.')[0] + "_corr.pdf" 
+    plt.savefig(filename_pdf)
+    
+    print("Correlation plot....",filename_pdf)
+    return {"pdffile":[filename_pdf], "format":["pdf"]}
+    # pass

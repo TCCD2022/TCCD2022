@@ -1,0 +1,14 @@
+{
+    "type":"object",
+    "properties": {
+		"title":{
+		  "title": "Title",
+				"type": "string"
+		},
+		"colour": {
+		  "title":"colour",
+				"description": "Primera modificacion",
+				"enum": ["probando"]
+		}
+	  }
+}
