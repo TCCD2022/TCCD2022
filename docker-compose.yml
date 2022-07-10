@@ -52,10 +52,12 @@ services:
     networks:
       - dvyy
   mean-jdm:
+    environment:
+      - FLASK_APP=/code/app
     build:
       context: .
       dockerfile: ./docker/Dockerfile.mean-flask-jdm
-    command: cd /code/ && flask run
+    command: flask run --host=0.0.0.0
     volumes:
       - ./jdm-python-mean:/code
     ports:
