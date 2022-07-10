@@ -1,4 +1,4 @@
-from flask_restful import Resource, reqparse, abort
+from flask_restful import Resource, reqparse, abort, request
 import sys
 sys.path.append("..")
 from utils.calculator import Calculator
@@ -75,32 +75,31 @@ class MeanApi(Resource):
     def post(self):
         # Verify the datatype of the request body
         # args = mean_post_args.parse_args()
+        request_data = request.get_json()
 
-        # Get the data
-        data = args["data"]
+        if ('data' in request_data):
+            # Get the data
+            data = request_data["data"]
 
-        print('   ')
-        print(data)
-        print('  ')
+            try:
+                data = [float(number) for number in data.split(",")]
 
-        try:
-            data = [float(number) for number in data.split(",")]
-
-            self._data = data
-
-        
-            self._mean = self._calculator.mean()
+                print(data)
             
-            # Create the JSON response
-            json_response = {
-                "mean": self._mean
-            }
+                mean = self._calculator.basic_mean()
+                
+                # Create the JSON response
+                json_response = {
+                    "mean": mean
+                }
 
-            return json_response, 200
-        except:
-            # Create the JSON response
-            json_response = {
-                "mean": "Your data is not well structured, remember you must have an array of only numbers"
-            }
+                return json_response, 200
+            except:
+                # Create the JSON response
+                json_response = {
+                    "mean": "Your data is not well structured, remember you must have an array of only numbers"
+                }
+        else:
+           self._calculator.mean(request_data); 
 
 
