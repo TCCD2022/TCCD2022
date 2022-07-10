@@ -106,5 +106,5 @@ class Calculator:
 
 
 
-calculator = Calculator()
-calculator.test()
+# calculator = Calculator()
+# calculator.test()
