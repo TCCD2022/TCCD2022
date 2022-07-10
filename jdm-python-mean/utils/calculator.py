@@ -7,35 +7,36 @@ import sys
 sys.path.append(".")
 
 class Calculator:
-    def __init__(self, data):
-        self.data = data
-
+    def __init__(self):
         self._data_sets = None
 
-    def mean(self):
+    def mean_put(self, data):
         # Calculate the mean of the data
-        # mean = statistics.mean(self.data)
-
-        print('   ')
-        print('   ')
-        print('   ')
-        print(self.data)
-
-        # filename = data["filename"]
-        filename ='exergamingresults.csv'
-
-        # Open the file
-        with open("/code/media/{}".format(filename), "r") as data_file:
-            # Read the document rows
-            csv_reader = csv.DictReader(data_file)
-            
-            line_count = 0
-            for row in csv_reader:
-                if line_count == 0:
-                    print(f'Column names are {", ".join(row)}')
-        
+        mean = statistics.mean(data)
 
         return mean
+
+    def mean(self):
+        print('   ')
+        # print('   ')
+        # print('   ')
+        # print(self.data)
+
+        # # filename = data["filename"]
+        # filename ='exergamingresults.csv'
+
+        # # Open the file
+        # with open("/code/media/{}".format(filename), "r") as data_file:
+        #     # Read the document rows
+        #     csv_reader = csv.DictReader(data_file)
+            
+        #     line_count = 0
+        #     for row in csv_reader:
+        #         if line_count == 0:
+        #             print(f'Column names are {", ".join(row)}')
+        
+
+        # return mean
 
     def create_data_sets(self, column_names):
         data_set = dict()
@@ -82,5 +83,5 @@ class Calculator:
 
 
 
-calculator = Calculator(23)
-calculator.test()
+# calculator = Calculator(23)
+# calculator.test()

@@ -56,10 +56,12 @@ services:
       - FLASK_APP=/code/app
     build:
       context: .
+      # context: ./jdm-python-mean
       dockerfile: ./docker/Dockerfile.mean-flask-jdm
+      # dockerfile: ../docker/Dockerfile.mean-flask-jdm
     command: flask run --host=0.0.0.0
     volumes:
-      # - ./jdm-python-mean:/code
+      - ./jdm-python-mean:/code
       - mediac:/code/media
     ports:
       - 5555:5000

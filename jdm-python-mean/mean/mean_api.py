@@ -14,6 +14,9 @@ class MeanApi(Resource):
 
         self._data = None
 
+        # Start the calculator
+        self._calculator = Calculator()
+
     
     # Getters and setters
     @property
@@ -24,15 +27,25 @@ class MeanApi(Resource):
     def mean(self, mean):
         self._mean = mean
 
+    @property
+    def calculator(self):
+        return self._calculator
+
+    @calculator.setter
+    def calculator(self, calculator):
+        self._calculator = calculator
+
+
+    # HTTP methods
     def get(self):
         return {"data": "Mean API working..."}
 
-    def post(self, data):
+    def post(self):
         # Verify the datatype of the request body
         # args = mean_post_args.parse_args()
 
         # Get the data
-        # data = args["data"]
+        data = args["data"]
 
         print('   ')
         print(data)
@@ -43,10 +56,36 @@ class MeanApi(Resource):
 
             self._data = data
 
-            # Start the calculator
-            calculator = Calculator(self._data)
+        
+            self._mean = self._calculator.mean()
+            
+            # Create the JSON response
+            json_response = {
+                "mean": self._mean
+            }
 
-            self._mean = calculator.mean()
+            return json_response, 200
+        except:
+            # Create the JSON response
+            json_response = {
+                "mean": "Your data is not well structured, remember you must have an array of only numbers"
+            }
+
+    def put(self):
+        # Verify the datatype of the request body
+        args = mean_post_args.parse_args()
+
+        # Get the data
+        data = args["data"]
+
+        print(data)
+
+        try:
+            data = [float(number) for number in data.split(",")]
+
+            self._data = data
+
+            self._mean = self._calculator.mean_put(data)
             
             # Create the JSON response
             json_response = {
@@ -61,3 +100,5 @@ class MeanApi(Resource):
             }
 
             return json_response, 500
+
+
