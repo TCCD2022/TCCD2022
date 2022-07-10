@@ -5,8 +5,9 @@
 			"title": "Title",
 			"type": "string"
 		},
-		"caption": {
-			"title": "Caption",
+		"comment": {
+			"title": "Comment",
+			"description": "Mean by Juan David Murillo Giraldo",
 			"type": "string"
 		}
 	}

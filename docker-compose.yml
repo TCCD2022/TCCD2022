@@ -60,6 +60,7 @@ services:
     command: flask run --host=0.0.0.0
     volumes:
       - ./jdm-python-mean:/code
+      - mediac:/code/media
     ports:
       - 5555:5000
     networks:

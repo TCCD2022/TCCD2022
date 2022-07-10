@@ -27,11 +27,12 @@
 		"model": "datafiles.Method",
 		"fields": {
 			"id": 3,
-			"name": "M-JDM v0.0.0",
+			"name": "Mean-JDM v0.0.0",
 			"description": "Calculate mean using flask.",
-			"prog_language": "python",
+			"prog_language": "py",
 			"url_service": "http://mean-jdm:5555/mean",
-			"json_schema": "static/jsonforms/visualisation/schema_mean_jdm.json"
+			"json_schema": "static/jsonforms/visualisation/schema_mean_jdm.json",
+			"doc_file": "static/mdocs/visualization/JDM-Mean-Projection.pdf "
 		}
 	}
 ]

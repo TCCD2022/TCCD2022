@@ -8,6 +8,4 @@ class Calculator:
         # Calculate the mean of the data
         mean = statistics.mean(self.data)
 
-        # // $
-        print(mean)
         return mean
