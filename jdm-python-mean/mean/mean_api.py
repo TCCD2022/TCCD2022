@@ -53,7 +53,7 @@ class MeanApi(Resource):
         except:
             # Create the JSON response
             json_response = {
-                "mean": "Your data is not well structured, remember you must have and array of only numbers"
+                "mean": "Your data is not well structured, remember you must have an array of only numbers"
             }
 
-            return json_response, 200
+            return json_response, 500
