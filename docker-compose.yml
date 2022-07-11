@@ -52,13 +52,15 @@ services:
     networks:
       - dvyy
   mean:
-   build:
-     context: .
-     dockerfile: ./docker/Dockerfile.mean
-   volumes:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.mean
+    volumes:
       - mediac:/code/media
-   ports:
+    ports:
       - 8080:8080
+    networks:
+      - dvyy
   flasklinearregression:
     build:
       context: .
