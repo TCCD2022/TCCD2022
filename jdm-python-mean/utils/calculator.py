@@ -154,19 +154,9 @@ class Calculator:
                 new_path.mkdir(parents = True)
 
             plt.savefig(file_name)
-
-            # return {
-            #     "pdffile": [file_name],
-            #     "format": ["pdf"]
-            # }
-
-
-
-
-
             print(self._data_sets)
 
 
 
-# calculator = Calculator()
-# calculator.test()
+calculator = Calculator()
+calculator.test()
