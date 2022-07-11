@@ -54,11 +54,10 @@ services:
   # java SpringBoot conatiner
   java-springboot:
     build:
-      context: ./docker/
-      dockerfile: Dockerfile.java-springboot
+      context: .
+      dockerfile: ./docker/Dockerfile.java-springboot
     volumes:
-      - ./java-springboot-src:/code
-      - mediac:/code/media
+      - mediac:/code/java-springboot-src
     ports:
       - 8080:8080
     networks:
