@@ -33,7 +33,7 @@
       "prog_language": "Py",
       "url_service": "http://pythonslope:5000",
       "json_schema": "static/jsonforms/visualisation/schema_slope_py.json",
-      "doc_file": "static/mdocs/visualization/Correlation_Plot.pdf "
+      "doc_file": "static/mdocs/visualization/SLOPE_Plot.pdf "
     }
   }
 ]
