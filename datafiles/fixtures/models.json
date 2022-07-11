@@ -1,38 +1,51 @@
 [
-   {
-      "model":"datafiles.Method",
-      "fields":{
-         "id":1,
-         "name":"Extract metadata v0.0.0",
-         "description":"Extracts number of rows and columns, and finds column types",
-         "prog_language":"R",
-         "url_service":"http://plumber:8181/coltypes",
-         "json_schema":"static/jsonforms/standard/schema_extract_metadata.json",
-         "doc_file":"static/mdocs/standard/Extract_metadata.pdf"
-      }
-   },
-   {
-      "model":"datafiles.Method",
-      "fields":{
-         "id":2,
-         "name":"PCA v0.0.0",
-         "description":"Principal component Analysis.",
-         "prog_language":"R",
-         "url_service":"http://plumber:8181/pca",
-         "json_schema":"static/jsonforms/visualisation/schema_pca_projection_r.json",
-         "doc_file":"static/mdocs/visualization/PCA_projection.pdf "
-      }
-   },
-   {
-      "model":"datafiles.Method",
-      "fields":{
-         "id":3,
-         "name":"Mean v0.0.0",
-         "description":"Mean calculation.",
-         "prog_language":"KT",
-         "url_service":"http://mean:8080/mean/calculate",
-         "json_schema":"static/jsonforms/visualisation/schema_mean_kotlin.json",
-         "doc_file":"static/mdocs/visualization/Mean.pdf "
-      }
-   }
+  {
+    "model": "datafiles.Method",
+    "fields": {
+      "id": 1,
+      "name": "Extract metadata v0.0.0",
+      "description": "Extracts number of rows and columns, and finds column types",
+      "prog_language": "R",
+      "url_service": "http://plumber:8181/coltypes",
+      "json_schema": "static/jsonforms/standard/schema_extract_metadata.json",
+      "doc_file": "static/mdocs/standard/Extract_metadata.pdf"
+    }
+  },
+  {
+    "model": "datafiles.Method",
+    "fields": {
+      "id": 2,
+      "name": "PCA v0.0.0",
+      "description": "Principal component Analysis.",
+      "prog_language": "R",
+      "url_service": "http://plumber:8181/pca",
+      "json_schema": "static/jsonforms/visualisation/schema_pca_projection_r.json",
+      "doc_file": "static/mdocs/visualization/PCA_projection.pdf "
+    }
+  },
+  {
+    "model": "datafiles.Method",
+    "fields": {
+      "id": 3,
+      "name": "LR v0.0.0",
+      "description": "Linear Regression plot.",
+      "prog_language": "Py",
+      "url_service": "http://flasklinearregression:5001/lr",
+      "json_schema": "static/jsonforms/visualisation/schema_lr_python.json",
+      "doc_file": "static/mdocs/visualization/Linear_Regression_Plot_pdf.pdf "
+    }
+  },
+  {
+    "model": "datafiles.Method",
+    "fields": {
+      "id": 4,
+      "name": "Mean v0.0.0",
+      "description": "Mean calculation.",
+      "prog_language": "KT",
+      "url_service": "http://mean:8080/mean/calculate",
+      "json_schema": "static/jsonforms/visualisation/schema_mean_kotlin.json",
+      "doc_file": "static/mdocs/visualization/Mean.pdf "
+    }
+  }
 ]
+

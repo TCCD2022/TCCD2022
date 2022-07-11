@@ -1,0 +1,22 @@
+#Dockerfile for linear regression method
+
+FROM python:3.8
+
+#COPY ./requirementsLr.txt /requirementsLr.txt
+
+
+COPY ./docker/requirementsLr.txt  /tmp
+
+
+WORKDIR /tmp
+
+
+RUN pip3 install -r requirementsLr.txt
+
+
+
+COPY Pythonsrc /code/
+
+
+
+#CMD ["python3","app.py"]
