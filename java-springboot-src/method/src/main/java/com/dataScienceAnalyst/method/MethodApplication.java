@@ -27,17 +27,17 @@ public class MethodApplication {
 
         DefaultCategoryDataset data = new DefaultCategoryDataset();
 
-        data.setValue(4, "Prueba 1", "Player 1");
-        data.setValue(4, "Prueba 1", "Player 2");
-        data.setValue(5, "Prueba 1", "Player 3");
+        data.setValue(4, "Prueba Termodinamica", "Andrés");
+        data.setValue(4, "Prueba Termodinamica", "Camila");
+        data.setValue(5, "Prueba Termodinamica", "Fernando");
 
-        data.setValue(2, "Prueba 2", "Player 1");
-        data.setValue(3, "Prueba 2", "Player 2");
-        data.setValue(3, "Prueba 2", "Player 3");
+        data.setValue(2, "Prueba Quimica I", "Andrés");
+        data.setValue(3, "Prueba Quimica I", "Camila");
+        data.setValue(3, "Prueba Quimica I", "Fernando");
 
         JFreeChart graphicBar = ChartFactory.createBarChart3D(
-                "Datos",
-                "Titulo abajo",
+                "Resultados Prueba",
+                "Estudiante",
                 "Puntaje",
                 data,
                 PlotOrientation.VERTICAL,
