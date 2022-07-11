@@ -44,8 +44,6 @@ class MeanApi(Resource):
         # Verify the datatype of the request body
         args = mean_put_args.parse_args()
 
-        
-
         # Get the data
         data = args["data"]
 
@@ -55,8 +53,8 @@ class MeanApi(Resource):
             data = [float(number) for number in data.split(",")]
 
             self._data = data
+            self._mean = self._calculator.basic_mean(data)
 
-            self._mean = self._calculator.mean_put(data)
             
             # Create the JSON response
             json_response = {
@@ -86,11 +84,11 @@ class MeanApi(Resource):
 
                 print(data)
             
-                mean = self._calculator.basic_mean()
+                self._mean = self._calculator.basic_mean(data)
                 
                 # Create the JSON response
                 json_response = {
-                    "mean": mean
+                    "mean": self._mean
                 }
 
                 return json_response, 200
