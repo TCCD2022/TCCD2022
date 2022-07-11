@@ -64,6 +64,8 @@ def linearRegressionMethod(data):
         path.mkdir(parents=True)
     #Plot
     sns.regplot(x, y,color=colorPlot).set(title=titlePlot)
+    plt.xlabel(nameX)
+    plt.ylabel(nameY)
     plt.savefig(fileName)
     plt.clf()
     print("linearRegression....",fileName)
