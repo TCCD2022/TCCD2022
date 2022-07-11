@@ -33,4 +33,11 @@ public class MainController {
 
         this.methodService.export(response);
     }
+
+    @RequestMapping(value="/method", method = RequestMethod.POST)
+    public void methodTeam2(HttpServletRequest request) throws IOException {
+        System.out.println("HII here is the request");
+        System.out.println(request);
+        this.methodService.export((HttpServletResponse) request);
+    }
 }
