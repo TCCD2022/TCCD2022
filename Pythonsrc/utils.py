@@ -21,16 +21,32 @@ def linearRegressionMethod(data):
     columns = data["col_ids"][:2];
     x = []
     y = []
-    indexX = int(columns[0]["colid"])
-    indexY = int(columns[1]["colid"])
+    indexX = ""
+    indexY = ""
+    nameX = columns[0]["colname"].replace('"','')
+    nameY = columns[1]["colname"].replace('"','')
+    #print("Name X ", nameX)
+    #print("Name Y ", nameY)
     # open file
     with open("/code/media/"+data["filename"], "r") as my_file:
     # pass the file object to reader()
         file_reader = reader(my_file)
-        next(file_reader,None)
+        head =  next(file_reader,None)
+        #head =  head[0]
+        print("HEAD ", head)
+        for i in range(0,len(head)):
+            print("HEAD i ", head[i])
+            if (head[i].replace('"','') == nameX ):
+                indexX= i
+                #print("If x ..", str(indexX))
+            if (head[i].replace('"','') == nameY):
+                indexY = i
+                #print("If y...", str(indexY))
         # do this for all the rows
         for i in file_reader:
-            array =  i[0].split(",")
+            #print("i..."+ str(i))
+            array =  i
+            #print("Array..."+ str(array))
             x.append(float(array[indexX]))
             y.append(float(array[indexY]))
     colorPlot = data["colour"]
@@ -49,6 +65,7 @@ def linearRegressionMethod(data):
     #Plot
     sns.regplot(x, y,color=colorPlot).set(title=titlePlot)
     plt.savefig(fileName)
+    plt.clf()
     print("linearRegression....",fileName)
     return {"pdffile":[fileName], "format":["pdf"]}
 
@@ -62,12 +79,19 @@ def correlation_plot_method(data):
     fileName = data["filename"]
     cols = [col['colname'] for col in data['col_ids']]
     df = pd.read_csv('/code/media/'+fileName, usecols=cols)
-
+    # Path for savin the figure
+    if 'save' in data.keys():
+       user_filename = data['save']
+    else:
+        user_filename=''
+    filename = get_filename(data['filename'],user_filename)
+    # Correlation Plot
     plt.style.use('seaborn')
-    sns.heatmap(df.corr(), annot = True,cmap='RdYlBu',vmin=-1.0,vmax=1.0)
+    annot = True if data['annot']=='Yes' else False
+    sns.heatmap(df.corr(), annot = annot,cmap='RdYlBu',vmin=-1.0,vmax=1.0)
 
-    filename = get_filename(data['filename'])
-    
+    if 'title' in data.keys():
+        plt.title(data['title'])   
     plt.savefig(filename,format='pdf',bbox_inches='tight')
     plt.clf()
     print("Correlation plot....",filename)
@@ -77,16 +101,16 @@ def correlation_plot_method(data):
 def get_filename(data_filename,user_filename):
     tmp =  data_filename.split("/")[:-1]
     currentPath = "/".join(tmp)
-    currentNameFile = data_filename.split("/").pop()
+    currentNameFile = data_filename.split("/")[-1].split('.')[0] #Take the file name without extension
     print("currentPath...", currentPath)
     print("currentName...", currentNameFile)
     date = str(datetime.now().strftime('_%m%d%Y_%H%M')) #add month,day,year,hour,minute
-    pathName = '/code/media/'+ currentPath +'dvg--results-/'+ currentNameFile + "/"
+    pathName = '/code/media/'+ currentPath +'/dvg--results-/'+ currentNameFile + "/"
     # Use default filename or a name setn by user
     if user_filename != '':
-        fileName = pathName + user_filename + date +".pdf" 
+        fileName = pathName + user_filename +".pdf" 
     else:
-        fileName = pathName + data_filename + date +".pdf" 
+        fileName = pathName + currentNameFile + date +".pdf" 
 
     if (os.path.exists(pathName) == False):
         path = Path(pathName)
