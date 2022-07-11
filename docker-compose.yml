@@ -51,6 +51,18 @@ services:
       - 8181:8181
     networks:
       - dvyy
+  pythonslope:
+    build:
+      context: .
+      dockerfile:  ./docker/Dockerfile.pythonslope
+    command: python /code/app.py
+    volumes:
+      - ./Pythonslopesrc:/code
+      - mediac:/code/media
+    ports:
+      - 5000:5000
+    networks:
+      - dvyy
 networks:
   dvyy:
     driver: bridge

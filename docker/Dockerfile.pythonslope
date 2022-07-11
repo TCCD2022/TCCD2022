@@ -1,0 +1,14 @@
+#Dockerfile for slope
+
+FROM python:3.8
+
+COPY ./docker/requirementsSlope.txt  /tmp
+
+WORKDIR /tmp
+
+RUN pip3 install -r requirementsSlope.txt
+
+COPY Pythonslopesrc /code/
+
+#CMD ["export","FLASK_APP=app.py"]
+CMD ["flask","run"]
