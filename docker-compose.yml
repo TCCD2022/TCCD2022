@@ -61,10 +61,10 @@ services:
       - 8080:8080
     networks:
       - dvyy
-  flasklinearregression:
+ pythonservices:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile.lrflask
+      dockerfile:  ./docker/Dockerfile.pythonservices
     command: python /code/app.py
     volumes:
       - ./Pythonsrc:/code

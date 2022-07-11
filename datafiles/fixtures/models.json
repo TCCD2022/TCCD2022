@@ -36,9 +36,21 @@
     }
   },
   {
+      "model": "datafiles.Method",
+      "fields": {
+          "id": 4,
+          "name" : "Correlation v0.0.0",
+          "description" : "Correlation Plot.",
+          "prog_language" : "Py",
+          "url_service" : "http://pythonservices:5001/corr",
+          "json_schema": "static/jsonforms/visualisation/schema_correlation_python.json",
+          "doc_file": "static/mdocs/visualization/Correlation_Plot.pdf "
+      }
+  },
+  {
     "model": "datafiles.Method",
     "fields": {
-      "id": 4,
+      "id": 5,
       "name": "Mean v0.0.0",
       "description": "Mean calculation.",
       "prog_language": "KT",
@@ -48,4 +60,3 @@
     }
   }
 ]
-
