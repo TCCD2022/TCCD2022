@@ -61,7 +61,7 @@ services:
       - 8080:8080
     networks:
       - dvyy
- pythonservices:
+  pythonservices:
     build:
       context: .
       dockerfile:  ./docker/Dockerfile.pythonservices
