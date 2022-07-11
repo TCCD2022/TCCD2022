@@ -23,6 +23,7 @@ import java.time.format.DateTimeFormatter
 import com.example.proyectotccd.domain.PdfFiles
 import org.jfree.chart.renderer.category.StandardBarPainter
 import java.awt.Color
+import java.time.temporal.ChronoUnit
 
 @Service
 class MeanService(
@@ -32,42 +33,62 @@ class MeanService(
 
     companion object {
         val TYPES = setOf("double", "integer")
-        val DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
+        val DATE_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")
         val logger: Logger = LoggerFactory.getLogger(MeanService::class.java)
     }
 
     fun createMean(metadata: FileInfo): PdfFiles {
-        val colNames = arrayListOf<String>()
-        val columnsIds = metadata.colIds.mapNotNull {
-            if (TYPES.contains(it.type.lowercase())) {
-                colNames.add(it.colname)
-                it.colid.toInt()
+        val colNames = metadata.colIds.mapNotNull { column ->
+            if (TYPES.any { column.type.lowercase().split(",\u00a0").contains(it) }) {
+                column.colname
             } else {
                 null
             }
         }
-        logger.info("Calculating mean for file ${metadata.filename} and ${columnsIds.size} columns")
+        logger.info("Calculating mean for file ${metadata.filename} and ${colNames.size} columns")
 
         val dirName = metadata.filename
 
-        val doubleMatrix = readCsv(dirName, columnsIds)
+        val doubleMatrix = logDuration("read_csv") {
+            readCsv(dirName, colNames)
+        }
 
-        val meanResult = mean(doubleMatrix)
+        val meanResult = logDuration("mean") {
+            mean(doubleMatrix)
+        }
 
-        val filePath = generatePDF(meanResult, dirName.split("/").last(), colNames, metadata.title, metadata.colour).also {
-            logger.info("File generated on path $it")
+        val filePath = logDuration("pdf") {
+            generatePDF(meanResult, dirName.split("/").last(), colNames, metadata.title, metadata.colour).also {
+                logger.info("File generated on path $it")
+            }
         }
 
         return PdfFiles(listOf(filePath))
 
     }
 
-    private fun readCsv(path: String, index: List<Int>): List<List<Double>> {
+    private inline fun <T> logDuration(id: String, crossinline callback: () -> T): T {
+        val start = LocalDateTime.now()
+        val result = callback()
+        val end = LocalDateTime.now()
+        logger.info("$id duration ${ChronoUnit.MILLIS.between(start, end)}ms")
+
+        return result
+    }
+
+    private fun readCsv(path: String, names: List<String>): List<List<Double>> {
         val file = File("$csvPath/$path")
         val result = csvReader().readAll(file)
         val doubleMatrix: MutableList<List<Double>> = arrayListOf()
+        val index = arrayListOf<Int>()
         result.forEachIndexed { i, row ->
-            if (i > 0) {
+            if (i == 0) {
+                row.forEachIndexed { j, colName ->
+                    if (names.contains(colName)) {
+                        index.add(j)
+                    }
+                }
+            } else {
                 val doubleList = arrayListOf<Double>()
                 index.forEach { j ->
                     doubleList.add(row[j].toDouble())
