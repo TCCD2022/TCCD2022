@@ -11,6 +11,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
@@ -69,10 +73,13 @@ public class MethodApplication {
         File outputfile = new File("image.png");
         ImageIO.write(image, "png", outputfile);
 
-        Document document = new Document(PageSize.A4);
+        Document document = new Document();
         PdfWriter.getInstance(document, response.getOutputStream());
 
-        String route = "/code/media/documents";
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String route = "/code/media/documents/mbg_" + currentDateTime + ".pdf";
         PdfWriter.getInstance(document, new FileOutputStream(route));
 
         document.open();
