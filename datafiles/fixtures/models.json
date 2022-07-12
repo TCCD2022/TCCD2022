@@ -36,7 +36,6 @@
       "doc_file": "static/mdocs/visualization/Linear_Regression_Plot_pdf.pdf "
     }
   },
-
   {
     "model": "datafiles.Method",
     "fields": {
@@ -56,7 +55,7 @@
       "name": "SLOPE v0.0.0",
       "description": "Slope Plot.",
       "prog_language": "Py",
-      "url_service": "http://pythonslope:5000",
+      "url_service": "http://pythonslope:8080/slope",
       "json_schema": "static/jsonforms/visualisation/schema_slope_py.json",
       "doc_file": "static/mdocs/visualization/SLOPE_Plot.pdf "
     }

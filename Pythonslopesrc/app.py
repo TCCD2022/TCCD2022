@@ -9,11 +9,13 @@ app = Flask(__name__)
 
 @app.route('/',methods = ['GET'])
 def helloslope():
+    print("Holaaaaa///")
     return "helloWorld"
-@app.route('/slope',methods = ['GET'])
+    
+@app.route('/slope',methods = ['POST'])
 def slope():
-    result = slope_method()
-    return result
+    # result = slope_method()
+    return {"pdffile":["HolaMundo"], "format":["pdf"]}
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=5000,debug=True) 
+    app.run(host="0.0.0.0",port=8080,debug=True) 

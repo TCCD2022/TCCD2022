@@ -1,2 +1,2 @@
 def slope_method():
-     return "Holaa"
+     return {"pdffile":["HolaMundo"], "format":["pdf"]}

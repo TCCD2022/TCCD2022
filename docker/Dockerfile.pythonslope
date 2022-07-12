@@ -10,5 +10,4 @@ RUN pip3 install -r requirementsSlope.txt
 
 COPY Pythonslopesrc /code/
 
-#CMD ["export","FLASK_APP=app.py"]
-CMD ["flask","run"]
+#CMD ["python3","app.py"]
