@@ -51,15 +51,16 @@ services:
       - 8181:8181
     networks:
       - dvyy
-  mean-jdm:
+  pythonservices:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile.mean-flask-jdm
-    command: cd /code/ && flask run
+      dockerfile:  ./docker/Dockerfile.pythonservices
+    command: python /code/app.py
     volumes:
-      - ./jdm-python-mean:/code
+      - ./Pythonsrc:/code
+      - mediac:/code/media
     ports:
-      - 5555:5000
+      - 5001:5001
     networks:
       - dvyy
 networks:
