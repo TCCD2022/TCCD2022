@@ -1,0 +1,9 @@
+FROM maven:3.8.5
+
+COPY ./Mean /code
+
+WORKDIR /code
+
+RUN mvn clean package
+
+ENTRYPOINT ["java","-jar","target/ProyectoTCCD-0.0.1-SNAPSHOT.jar"]
