@@ -1,5 +1,7 @@
 package com.dataScienceAnalyst.method;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -13,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-import com.lowagie.text.*;
-import com.lowagie.text.pdf.PdfWriter;
 
 @Service
 @SpringBootApplication
@@ -23,7 +23,7 @@ public class MethodApplication {
         SpringApplication.run(MethodApplication.class, args);
     }
 
-    public void export(HttpServletResponse response) throws IOException {
+    public void export(HttpServletResponse response) throws IOException, DocumentException {
 
         DefaultCategoryDataset data = new DefaultCategoryDataset();
 
@@ -64,6 +64,9 @@ public class MethodApplication {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
 
+        String route = "/code/media/documents";
+        PdfWriter.getInstance(document, new FileOutputStream(route));
+
         document.open();
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         fontTitle.setSize(18);
@@ -83,6 +86,7 @@ public class MethodApplication {
         document.add(paragraph2);
         document.add(png);
         document.close();
+
     }
 
 }

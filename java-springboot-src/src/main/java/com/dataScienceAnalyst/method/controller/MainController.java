@@ -31,6 +31,11 @@ public class MainController {
         String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        this.methodService.export(response);
+        try {
+            this.methodService.export(response);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
