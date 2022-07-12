@@ -4,11 +4,6 @@
 		"title":{
 		  "title": "Title",
 				"type": "string"
-		},
-		"colour": {
-		  "title":"colour",
-				"description": "Categorical variable to colour the linear regression in the plot.",
-				"enum": ["red","blue","green"]
 		}
 	  }
 }

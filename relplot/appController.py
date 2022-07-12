@@ -1,3 +1,4 @@
+import json
 
 from flask import *
 from app import *
@@ -8,13 +9,8 @@ app = Flask(__name__)
 @app.route('/rp',methods = ['POST'])
 
 def appController():
-
-
-    print("----------------------------------llegue---------------------------------")
-    print()
-
-    values1 = relationPlots()
-
+    values = json.loads(request.form.getlist("metadata")[0])
+    values1 = relationPlots(values)
     return values1
 
 

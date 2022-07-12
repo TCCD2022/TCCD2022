@@ -1,3 +1,6 @@
+import csv
+
+import pandas
 import seaborn as sns
 from matplotlib import pyplot as plt
 from pandas import *
@@ -8,20 +11,29 @@ import os
 import json
 from datetime import datetime
 
-def relationPlots():
-    print("dataaa58548")
+def relationPlots(data):
+    excelPath = "/code/media/"+data["filename"]
 
-    # selecting style
+    x = data["col_ids"][0]
+    y = data["col_ids"][1]
+
     sns.set(style="ticks")
+    cvs = pandas.read_csv(excelPath)
 
-    # reading the dataset
-    tips = sns.load_dataset('tips')
+    sns.relplot(x=x["colname"],
+                y=y["colname"],
+                hue="old",
+                data=cvs)
 
-    sns.relplot(x="total_bill",
-                y="tip",
-                hue="day",
-                size="size",
-                data=tips)
+    path = data["filename"].split("/")
+    pathFinal = ""
+    for i in range (len(path)-1):
+        pathFinal+=path[i];
+        pathFinal+="/"
 
-    plt.savefig("/code/media/documents/2022/07/10/nenita.pdf")
-    return {"pdffile":["/code/media/documents/2022/07/10/nenita.pdf"], "format":["pdf"]}
+
+    inMomory = "/code/media/{}{}.pdf".format(pathFinal, data["title"])
+    print(inMomory)
+
+    plt.savefig(inMomory)
+    return {"pdffile":[inMomory], "format":["pdf"]}
