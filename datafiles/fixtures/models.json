@@ -61,5 +61,6 @@
             "json_schema": "static/jsonforms/visualisation/schema_bar_chart_python.json",
             "doc_file": "static/mdocs/visualization/bar_chart_Plot.pdf "
         }
-    }
+     }
 ]
+
