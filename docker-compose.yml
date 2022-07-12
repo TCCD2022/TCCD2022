@@ -57,7 +57,7 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile.java-springboot
     volumes:
-      - mediac:/code/java-springboot-src
+      - mediac:/code/media
     ports:
       - 8080:8080
     networks:
