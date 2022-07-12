@@ -21,6 +21,7 @@ import java.io.FileOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import com.example.proyectotccd.domain.PdfFiles
+import com.itextpdf.text.exceptions.IllegalPdfSyntaxException
 import org.jfree.chart.renderer.category.StandardBarPainter
 import java.awt.Color
 import java.time.temporal.ChronoUnit
@@ -151,8 +152,14 @@ class MeanService(
 
         pdfContentByte.addTemplate(pdfTemplate, 40f, 500f) //0, 0 will draw BAR chart on bottom left of page
         graphics2d.dispose()
-        pdfTemplate.restoreState()
-        pdfTemplate.restoreState()
+        try {
+            pdfTemplate.sanityCheck()
+            logger.info("sanity check success")
+        } catch (ex: IllegalPdfSyntaxException) {
+            logger.info("sanity check failure")
+            pdfTemplate.restoreState()
+            pdfTemplate.restoreState()
+        }
         document.close()
 
         return filePath
