@@ -2,6 +2,7 @@ package com.dataScienceAnalyst.method;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.dataScienceAnalyst.method.jsonEntity.ObjectRequest;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
@@ -23,7 +26,12 @@ public class MethodApplication {
         SpringApplication.run(MethodApplication.class, args);
     }
 
-    public void export(HttpServletResponse response) throws IOException, DocumentException {
+    public void export(String request, HttpServletResponse response) throws IOException, DocumentException {
+
+
+        ObjectRequest obj = new Gson().fromJson(request, ObjectRequest.class);
+        System.out.println(obj.getWidth());
+        System.out.println(obj.getHeight());
 
         DefaultCategoryDataset data = new DefaultCategoryDataset();
 
@@ -36,9 +44,9 @@ public class MethodApplication {
         data.setValue(3, "Prueba Quimica I", "Fernando");
 
         JFreeChart graphicBar = ChartFactory.createBarChart3D(
-                "Resultados Prueba",
-                "Estudiante",
-                "Puntaje",
+                obj.getTitleGraphic(),
+                obj.getxLabel(),
+                obj.getyLabel(),
                 data,
                 PlotOrientation.VERTICAL,
                 true,
@@ -46,7 +54,7 @@ public class MethodApplication {
                 false
         );
 
-        BufferedImage objBufferedImage= graphicBar.createBufferedImage(500,300);
+        BufferedImage objBufferedImage= graphicBar.createBufferedImage(obj.getWidth(),obj.getHeight());
         ByteArrayOutputStream bas = new ByteArrayOutputStream();
         try {
             ImageIO.write(objBufferedImage, "png", bas);
@@ -69,15 +77,15 @@ public class MethodApplication {
 
         document.open();
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
-        fontTitle.setSize(18);
+        fontTitle.setSize(obj.getTitleSize());
 
-        Paragraph paragraph = new Paragraph("Graficos de los resultados obtenidos", fontTitle);
+        Paragraph paragraph = new Paragraph(obj.getTextTitle(), fontTitle);
         paragraph.setAlignment(Paragraph.ALIGN_CENTER);
 
         Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);
-        fontParagraph.setSize(12);
+        fontParagraph.setSize(obj.getParagraphSize());
 
-        Paragraph paragraph2 = new Paragraph("A continuacion se presenta una grafica de barras con los resultados obtenidos en la prueba", fontParagraph);
+        Paragraph paragraph2 = new Paragraph(obj.getTextParagraph(), fontParagraph);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
 
         Image png = Image.getInstance("image.png");

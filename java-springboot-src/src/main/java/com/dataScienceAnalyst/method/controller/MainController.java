@@ -8,9 +8,11 @@ import com.dataScienceAnalyst.method.MethodApplication;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/demo")
@@ -32,7 +34,22 @@ public class MainController {
         response.setHeader(headerKey, headerValue);
 
         try {
-            this.methodService.export(response);
+       //      this.methodService.export(response);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value="/method", method = RequestMethod.POST)
+    public void methodTeam2(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String bodyUrlEncoded = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        System.out.println(bodyUrlEncoded);
+        String data = bodyUrlEncoded.split("=")[1];
+        String bodyText = java.net.URLDecoder.decode(data, StandardCharsets.UTF_8.displayName());
+        System.out.println(bodyText);
+        try {
+              this.methodService.export(bodyText,response);
         }
         catch (Exception e) {
             e.printStackTrace();

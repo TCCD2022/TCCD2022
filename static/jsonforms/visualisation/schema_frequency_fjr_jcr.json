@@ -1,0 +1,67 @@
+{
+    "type":"object",
+    "properties": {
+        "width":{
+            "type": "number",
+            "title": "Width",
+            "default":500,
+            "required": true,
+            "minimum":100,
+          "maximum":700
+          },
+          "height":{
+            "type": "number",
+            "title": "Height",
+            "default":300,
+            "required": true,
+            "minimum":100,
+            "maximum":700
+          },
+          "titleSize":{
+            "type": "number",
+            "title": "Size Title",
+            "default":18,
+            "required": true,
+            "minimum":5,
+            "maximum":40
+          },
+          "paragraphSize":{
+            "type": "number",
+            "title": "Description Size",
+            "default":12,
+            "required": true,
+            "minimum":5,
+            "maximum":25
+          },
+          "textTitle": {
+            "type": "string",
+            "title": "Title",
+            "default":"Default",
+            "required": true
+          },
+          "textParagraph": {
+            "type": "string",
+            "title": "Description",
+            "default":"Default Description",
+            "required": true
+          },
+          "titleGraphic": {
+            "type": "string",
+            "title": "Title Graphic",
+            "default":"Default Graphic",
+            "required": true
+          },
+          "xLabel":{
+           "type": "string",
+            "title": "Label of x axis",
+            "default":"X-LABEL",
+            "required": true
+          },
+          "yLabel":{
+           "type": "string",
+            "title": "Label of y axis",
+            "default":"Y-LABEL",
+            "required": true
+          }
+    }
+  }

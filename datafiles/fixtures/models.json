@@ -22,5 +22,18 @@
     	    "json_schema": "static/jsonforms/visualisation/schema_pca_projection_r.json",
 	    "doc_file": "static/mdocs/visualization/PCA_projection.pdf "
 	}
-    }
+    },
+	{
+		"model": "datafiles.Method",
+		"fields": {
+		 "id": 7,
+		 "name" : "Frequency fjr_jcr V0.0.0",
+		 "description" : "Method to graphic data.",
+		 "prog_language" : "J",
+		 "url_service" : "http://java-springboot:8080/demo/method",
+		 "json_schema": "static/jsonforms/visualisation/schema_frequency_fjr_jcr.json",
+		 "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
+		}
+		}
+		
 ]
