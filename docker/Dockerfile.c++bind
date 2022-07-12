@@ -3,19 +3,27 @@
 FROM python:latest
 LABEL Description="C++ Build Environment"
 
-COPY ./docker/requirementsc++.txt  /tmp
+COPY ./requirementsc++.txt  /tmp
 
 WORKDIR /tmp
 
 RUN pip3 install -r requirementsc++.txt
 
-COPY c++src /code/
+COPY /c++src /code/
 
-ENV HOME /root
+#ENV HOME /root
 
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && apt-get -y --no-install-recommends install \
     build-essential \
     cmake 
+RUN mkdir build && \
+    cd build && \
+    cmake .. && \
+    make && \
+    mv kmeans .. && \
+    cd .. && \
+    rm -rf build 
 
+CMD ["python3", "c++bind.py"]
