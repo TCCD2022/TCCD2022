@@ -9,8 +9,9 @@ WORKDIR /tmp
 
 RUN pip3 install -r requirementsc++.txt
 
-COPY /c++src /code/
+COPY ./c++src /tmp/code/
 
+WORKDIR /tmp/code
 #ENV HOME /root
 
 #SHELL ["/bin/bash", "-c"]
@@ -18,12 +19,13 @@ COPY /c++src /code/
 RUN apt-get update && apt-get -y --no-install-recommends install \
     build-essential \
     cmake 
-RUN mkdir build && \
+RUN cd src && \
+    mkdir build && \
     cd build && \
     cmake .. && \
     make && \
-    mv kmeans .. && \
-    cd .. && \
-    rm -rf build 
+    mv kmeans ../.. && \
+    cd ../.. && \
+    rm -rf src 
 
 CMD ["python3", "c++bind.py"]
