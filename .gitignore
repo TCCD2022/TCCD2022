@@ -179,3 +179,6 @@ flycheck_*.el
 
 staticfiles/
 __pycache__/*
+#File 
+*.pdf:Zone.Identifier
+static/mdocs/visualization/Linear_Regression_Plot_pdf.pdf\357\200\272Zone.Identifier

@@ -61,9 +61,16 @@ services:
     command: flask run --host=0.0.0.0
     volumes:
       - ./jdm-python-mean:/code
+  pythonservices:
+    build:
+      context: .
+      dockerfile:  ./docker/Dockerfile.pythonservices
+    command: python /code/app.py
+    volumes:
+      - ./Pythonsrc:/code
       - mediac:/code/media
     ports:
-      - 5555:5000
+      - 5001:5001
     networks:
       - dvyy
 networks:
