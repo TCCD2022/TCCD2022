@@ -89,6 +89,7 @@ class MeanService(
                         index.add(j)
                     }
                 }
+                logger.info("processing columns $index corresponding to cols $names")
             } else {
                 val doubleList = arrayListOf<Double>()
                 index.forEach { j ->
