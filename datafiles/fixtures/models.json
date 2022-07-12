@@ -48,5 +48,18 @@
             "json_schema": "static/jsonforms/visualisation/schema_correlation_python.json",
             "doc_file": "static/mdocs/visualization/Correlation_Plot.pdf "
         }
+    },	
+
+    {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 5,
+            "name" : "KMeans v0.0.0",
+            "description" : "KMeans Custering.",
+            "prog_language" : "C/C++",
+            "url_service" : "http://cbind:4001/kmeans",
+            "json_schema": "static/jsonforms/visualisation/schema_kmeans_c++.json",
+            "doc_file": "static/mdocs/visualization/KMeans_Clustering_c++.pdf "
+        }
     }
 ]
