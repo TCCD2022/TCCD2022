@@ -61,6 +61,16 @@ services:
       - mediac:/code/media
     ports:
       - 5000:5000
+  pythonservices:
+    build:
+      context: .
+      dockerfile:  ./docker/Dockerfile.pythonservices
+    command: python /code/app.py
+    volumes:
+      - ./Pythonsrc:/code
+      - mediac:/code/media
+    ports:
+      - 5001:5001
     networks:
       - dvyy
 networks:
