@@ -35,7 +35,7 @@
             "json_schema": "static/jsonforms/visualisation/schema_lr_python.json",
             "doc_file": "static/mdocs/visualization/Linear_Regression_Plot_pdf.pdf "
         }
-    },	
+    },
 
     {
         "model": "datafiles.Method",
@@ -47,6 +47,19 @@
             "url_service" : "http://pythonservices:5001/corr",
             "json_schema": "static/jsonforms/visualisation/schema_correlation_python.json",
             "doc_file": "static/mdocs/visualization/Correlation_Plot.pdf "
+        }
+    },
+
+    {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 5,
+            "name" : "BarChart v0.0.0",
+            "description" : "Bar Chart Plot.",
+            "prog_language" : "Py",
+            "url_service" : "http://pythonservices:5001/bc",
+            "json_schema": "static/jsonforms/visualisation/schema_bar_chart_python.json",
+            "doc_file": "static/mdocs/visualization/bar_chart_Plot.pdf "
         }
     }
 ]
