@@ -1,6 +1,7 @@
 package com.example.proyectotccd.service
 
 import com.example.proyectotccd.domain.FileInfo
+import com.example.proyectotccd.domain.PdfFiles
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.itextpdf.awt.DefaultFontMapper
 import com.itextpdf.awt.PdfGraphics2D
@@ -10,20 +11,18 @@ import org.jfree.chart.ChartFactory
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator
 import org.jfree.chart.plot.PlotOrientation
 import org.jfree.chart.renderer.category.StackedBarRenderer
+import org.jfree.chart.renderer.category.StandardBarPainter
 import org.jfree.data.category.DefaultCategoryDataset
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+import java.awt.Color
 import java.awt.geom.Rectangle2D
 import java.io.File
 import java.io.FileOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import com.example.proyectotccd.domain.PdfFiles
-import com.itextpdf.text.exceptions.IllegalPdfSyntaxException
-import org.jfree.chart.renderer.category.StandardBarPainter
-import java.awt.Color
 import java.time.temporal.ChronoUnit
 
 @Service
@@ -46,7 +45,7 @@ class MeanService(
                 null
             }
         }
-        logger.info("Calculating mean for file ${metadata.filename} and ${colNames.size} columns")
+        logger.info("Calculating mean for file ${metadata.filename} and ${colNames.size} columns $colNames")
 
         val dirName = metadata.filename
 
@@ -79,29 +78,19 @@ class MeanService(
 
     private fun readCsv(path: String, names: List<String>): List<List<Double>> {
         val file = File("$csvPath/$path")
-        val result = csvReader().readAll(file)
+        val result = csvReader().readAllWithHeader(file)
         val doubleMatrix: MutableList<List<Double>> = arrayListOf()
-        val index = arrayListOf<Int>()
         result.forEachIndexed { i, row ->
-            if (i == 0) {
-                row.forEachIndexed { j, colName ->
-                    if (names.contains(colName)) {
-                        index.add(j)
-                    }
+            val doubleList = arrayListOf<Double>()
+            names.forEach { j ->
+                var cell = row[j]?.toDoubleOrNull()
+                if (cell == null) {
+                    logger.warn("Cell $i , $j does not have a valid numeric value")
+                    cell = 0.0
                 }
-                logger.info("processing columns $index corresponding to cols $names")
-            } else {
-                val doubleList = arrayListOf<Double>()
-                index.forEach { j ->
-                    var cell = row.getOrNull(j)?.toDoubleOrNull()
-                    if (cell == null) {
-                        logger.warn("Cell $i , $j does not have a valid numeric value")
-                        cell = 0.0
-                    }
-                    doubleList.add(cell)
-                }
-                doubleMatrix.add(doubleList)
+                doubleList.add(cell)
             }
+            doubleMatrix.add(doubleList)
         }
         return doubleMatrix
     }
@@ -161,7 +150,7 @@ class MeanService(
         try {
             pdfTemplate.sanityCheck()
             logger.info("sanity check success")
-        } catch (ex: IllegalPdfSyntaxException) {
+        } catch (ex: Exception) {
             logger.info("sanity check failure")
             pdfTemplate.restoreState()
             pdfTemplate.restoreState()
