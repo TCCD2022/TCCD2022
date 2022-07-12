@@ -92,7 +92,12 @@ class MeanService(
             } else {
                 val doubleList = arrayListOf<Double>()
                 index.forEach { j ->
-                    doubleList.add(row[j].toDouble())
+                    var cell = row.getOrNull(j)?.toDoubleOrNull()
+                    if (cell == null) {
+                        logger.warn("Cell $i , $j does not have a valid numeric value")
+                        cell = 0.0
+                    }
+                    doubleList.add(cell)
                 }
                 doubleMatrix.add(doubleList)
             }
