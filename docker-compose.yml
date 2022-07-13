@@ -61,6 +61,7 @@ services:
     command: flask run --host=0.0.0.0
     volumes:
       - ./jdm-python-mean:/code
+      - mediac:/code/media
   pythonservices:
     build:
       context: .
