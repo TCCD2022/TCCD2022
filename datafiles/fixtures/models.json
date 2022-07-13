@@ -61,6 +61,19 @@
             "json_schema": "static/jsonforms/visualisation/schema_bar_chart_python.json",
             "doc_file": "static/mdocs/visualization/bar_chart_Plot.pdf "
         }
-     }
+     },
+     
+     {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 6,
+            "name" : "Histogram v0.0.0",
+            "description" : "Histogram Plot.",
+            "prog_language" : "Py",
+            "url_service" : "http://pythonservices:5001/histogram",
+            "json_schema": "static/jsonforms/visualisation/schema_histogram_python.json",
+            "doc_file": "static/mdocs/visualization/Histogram.pdf "
+        }
+    }
 ]
 

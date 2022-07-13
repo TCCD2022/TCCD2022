@@ -1,0 +1,34 @@
+{
+    "type":"object",
+    "properties": {
+         "binsvalue":{
+	    "title": "Bins",
+	    "description": "Histogram is a mapping of bins (intervals) to frequencies. Empty is auto.",
+	    "type": "number"
+	  },
+          "title": {
+            "title": "Histogram Title",
+            "description": "Histogram title",
+            "type": "string",
+	    "required": true
+          },
+          "xlabel": {
+            "title": "X Label",
+            "description": "X Label for the histogram",
+            "type": "string",
+	    "required": true
+          },
+          "ylabel": {
+            "title": "Y Label",
+            "description": "Y Label for the histogram",
+            "type": "string",
+	    "required": true
+          },
+          "savepdf": {
+            "title": "Save name",
+            "description": "Name to save the file",
+            "type": "string",
+	    "required": true
+          }
+      }
+}

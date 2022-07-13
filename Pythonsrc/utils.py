@@ -145,3 +145,48 @@ def get_filename(data_filename,user_filename):
         path = Path(pathName)
         path.mkdir(parents=True)
     return fileName
+
+def histogram_method(data):
+    '''
+    This method returns a correlation plot between the selected variables
+    Parameters:
+        data: Object with the necessary information to construct the plot: file name, 
+        column names, plot title and dimensions. 
+    '''
+
+    fileName = data["filename"]
+    cols = [col['colname'] for col in data['col_ids']]
+    df = pd.read_csv('/code/media/'+fileName, usecols=cols)
+    # Path for savin the figure
+    if 'savepdf' in data.keys():
+       user_filename = data['savepdf']
+    else:
+        user_filename=''
+    filename = get_filename(data['filename'],user_filename)
+    if 'binsvalue' in data.keys():
+        binsTotal = data['binsvalue']
+    else:
+        binsTotal = 'auto'
+    # Histogram Plot
+    n, bins, patches=plt.hist(df,bins=binsTotal,density=True)
+    plt.ylabel("Probability")
+    if 'title' in data.keys():
+        plt.title(data['title'])
+    else:
+        plt.title("Default title")
+
+    if 'xlabel' in data.keys():
+        plt.xlabel(data['xlabel'])
+    else:
+        plt.xlabel("X Label default")
+
+    if 'ylabel' in data.keys():
+        plt.ylabel(data['ylabel'])
+    else:
+        plt.ylabel("Y Label default")
+
+
+    plt.savefig(filename,format='pdf',bbox_inches='tight')
+    plt.clf()
+    print("Correlation plot....",filename)
+    return {"pdffile":[filename], "format":["pdf"]}
