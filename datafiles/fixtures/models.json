@@ -46,7 +46,7 @@
             "prog_language" : "Py",
             "url_service" : "http://pythonservices:5001/corr",
             "json_schema": "static/jsonforms/visualisation/schema_correlation_python.json",
-            "doc_file": "static/mdocs/visualization/Correlation_Plot.pdf "
+            "doc_file": "static/mdocs/visualization/correlation_plot.pdf "
         }
     },
 
