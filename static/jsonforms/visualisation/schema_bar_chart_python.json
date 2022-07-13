@@ -1,0 +1,27 @@
+{
+    "type":"object",
+    "properties": {
+     	"titlex": {
+      		"title": "X axis title",
+        	"type": "string"
+     	},
+    	"titley": {
+      		"title": "y axis title",
+      		"type": "string"
+    	},
+    	"titleplot": {
+      		"title": "Title of the plot",
+      		"type": "string"
+    	},
+    	"Color": {
+      		"title": "Color",
+      		"description": "Color for the plot",
+      		"type": "string",
+      		"enum": [
+        		"Green",
+        		"Blue",
+        		"Red"
+      		]
+    	}
+    }
+}

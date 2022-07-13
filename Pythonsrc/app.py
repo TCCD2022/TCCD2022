@@ -23,5 +23,12 @@ def correlation_plot():
     result = correlation_plot_method(values)
     return result
 
+@app.route('/bc',methods = ['POST'])
+def bar_chart_plot():
+    values =  json.loads(request.form.getlist("metadata")[0])
+    result = bar_chart_plot_method(values)
+    return result
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5001,debug=True)
