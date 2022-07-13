@@ -27,11 +27,11 @@
 	{
 	"model": "datafiles.Method",
 	"fields": {
-	    "id": 3,
+	    "id": 5,
 	    "name" : "RP v0.0.0",
 	    "description" : "Relational plots.",
 	    "prog_language" : "Py",
-	    "url_service" : "http://relplot:4001/rp",
+	    "url_service" : "http://pythonservices:5001/rp",
     	    "json_schema": "static/jsonforms/visualisation/schema_rp_python.json",
 	    "doc_file": "static/mdocs/visualization/PCA_projection.pdf"
 	}

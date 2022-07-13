@@ -52,16 +52,16 @@ services:
     networks:
       - dvyy
 
-  relplot:
+  pythonservices:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile.python
-    command: python /code/appController.py
+      dockerfile: docker/Dockerfile.pythonservice
+    command: python /code/app.py
     volumes:
-      - ./relplot:/code
+      - ./Pythonsrc:/code
       - mediac:/code/media
     ports:
-      - 4001:4001
+      - 5001:5001
     networks:
       - dvyy
 
