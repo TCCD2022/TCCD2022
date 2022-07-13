@@ -57,14 +57,19 @@ class Calculator:
             
             # Plot data
             x_pos = np.arange(len(self._column_names))
-            plt.bar(x_pos, self._results_array)
-            # plt.title('Mean - Juan David Murillo')
-            plt.title(data["title"])
-            plt.xlabel(data["caption"])
-            plt.ylabel('Column mean')
 
-            plt.xticks(x_pos, self._column_names)
-            # plt.show()
+            fig, ax = plt.subplots()
+            rects = ax.bar(x_pos, self._results_array)
+            ax.set_title(data["title"])
+            ax.set_xlabel(data["caption"])
+            ax.set_ylabel('Column mean')
+
+            ax.set_xticks(x_pos, self._column_names)
+            for rect in rects:
+                height = rect.get_height()
+                ax.text(rect.get_x() + rect.get_width()/2., height,
+                        '%d' % int(height),
+                        ha='center', va='bottom')
 
             # Save plot
             current_path = "/".join(data["filename"].split('/')[:-1])
