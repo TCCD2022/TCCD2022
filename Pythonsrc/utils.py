@@ -148,10 +148,10 @@ def get_filename(data_filename,user_filename):
 
 def histogram_method(data):
     '''
-    This method returns a correlation plot between the selected variables
+    This method returns a histogram plot between the selected variables
     Parameters:
         data: Object with the necessary information to construct the plot: file name, 
-        column names, plot title and dimensions. 
+        column names, plot title, bins, xLabel, YLabel. 
     '''
 
     fileName = data["filename"]
@@ -188,5 +188,5 @@ def histogram_method(data):
 
     plt.savefig(filename,format='pdf',bbox_inches='tight')
     plt.clf()
-    print("Correlation plot....",filename)
+    print("Histogram plot....",filename)
     return {"pdffile":[filename], "format":["pdf"]}
