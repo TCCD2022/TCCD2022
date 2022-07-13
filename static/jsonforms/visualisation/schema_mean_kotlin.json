@@ -1,0 +1,14 @@
+{
+    "type":"object",
+    "properties": {
+		"colour": {
+			"title":"colour",
+			"description": "Colour of the bars in the chart",
+			"enum": ["red", "orange", "blue", "yellow", "magenta", "pink"]
+		},
+		"title":{
+			"title": "Title",
+			"type": "string"
+		}
+    }
+}
