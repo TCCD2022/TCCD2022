@@ -26,7 +26,7 @@
 	{
 		"model": "datafiles.Method",
 		"fields": {
-		 "id": 7,
+		 "id": 10,
 		 "name" : "Compare data fjr_jcr V0.0.0",
 		 "description" : "Method to graphic data.",
 		 "prog_language" : "J",
