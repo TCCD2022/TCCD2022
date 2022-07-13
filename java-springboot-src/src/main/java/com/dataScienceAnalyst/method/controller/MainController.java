@@ -1,5 +1,8 @@
 package com.dataScienceAnalyst.method.controller;
 
+import com.dataScienceAnalyst.method.jsonEntity.JsonResponse;
+import com.google.gson.Gson;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/demo")
@@ -42,17 +46,36 @@ public class MainController {
     }
 
     @RequestMapping(value="/method", method = RequestMethod.POST)
-    public void methodTeam2(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String methodTeam2(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String bodyUrlEncoded = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         System.out.println(bodyUrlEncoded);
         String data = bodyUrlEncoded.split("=")[1];
         String bodyText = java.net.URLDecoder.decode(data, StandardCharsets.UTF_8.displayName());
         System.out.println(bodyText);
+        String rs = "";
         try {
-              this.methodService.export(bodyText,response);
+            String route = this.methodService.export(bodyText,response);
+            String json = makeJsonResponse(route);
+            System.out.println(json);
+            return json;
+
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+        return rs;
+    }
+
+    @GetMapping
+    public String makeJsonResponse(String route) {
+        Gson gson = new Gson();
+        JsonResponse js = new JsonResponse();
+        String[] pdfFormat = {"pdf"};
+        String[] pdfRoute  = {route};
+        js.setFormat(pdfFormat);
+        js.setPdffile(pdfRoute);
+        String JSON = gson.toJson(js);
+        System.out.println(JSON);
+        return JSON;
     }
 }

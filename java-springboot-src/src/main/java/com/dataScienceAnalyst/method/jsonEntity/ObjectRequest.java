@@ -10,6 +10,15 @@ public class ObjectRequest {
     private String titleGraphic;
     private String xLabel;
     private String yLabel;
+    private String filename;
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 
     public String getxLabel() {
         return xLabel;
