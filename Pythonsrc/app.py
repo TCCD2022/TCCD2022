@@ -1,3 +1,5 @@
+
+
 import json
 from flask import Flask, jsonify
 from utils import *
@@ -7,6 +9,7 @@ from relationPlots import *
 
 
 app = Flask(__name__)
+
 
 """
     post: /lr
@@ -24,12 +27,11 @@ def correlation_plot():
     result = correlation_plot_method(values)
     return result
 
-"""
-    POST:/rp
-    rp relation plots
-
-"""
-
+@app.route('/bc',methods = ['POST'])
+def bar_chart_plot():
+    values =  json.loads(request.form.getlist("metadata")[0])
+    result = bar_chart_plot_method(values)
+    return result
 
 @app.route('/rp',methods = ['POST'])
 
@@ -40,4 +42,5 @@ def appController():
 
 
 if __name__ == '__main__':
- 	app.run(host="0.0.0.0",port=5001,debug=True)
+    app.run(host="0.0.0.0",port=5001,debug=True)
+
