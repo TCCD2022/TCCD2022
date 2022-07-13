@@ -35,7 +35,7 @@
             "json_schema": "static/jsonforms/visualisation/schema_lr_python.json",
             "doc_file": "static/mdocs/visualization/Linear_Regression_Plot_pdf.pdf "
         }
-    },	
+    },
 
     {
         "model": "datafiles.Method",
@@ -54,6 +54,32 @@
         "model": "datafiles.Method",
         "fields": {
             "id": 5,
+            "name" : "BarChart v0.0.0",
+            "description" : "Bar Chart Plot.",
+            "prog_language" : "Py",
+            "url_service" : "http://pythonservices:5001/bc",
+            "json_schema": "static/jsonforms/visualisation/schema_bar_chart_python.json",
+            "doc_file": "static/mdocs/visualization/bar_chart_Plot.pdf "
+        }
+     },
+
+     {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 6,
+            "name" : "KMeans v0.0.0",
+            "description" : "KMeans Custering.",
+            "prog_language" : "C+",
+            "url_service" : "http://cbind:4001/kmeans",
+            "json_schema": "static/jsonforms/visualisation/schema_kmeans_c++.json",
+            "doc_file": "static/mdocs/visualization/KMeans_Clustering_c++.pdf "
+        }
+    },
+
+    {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 5,
             "name" : "Nnc Bar Graphic v0.0.0",
             "description" : "Bar Graphic.",
             "prog_language" : "Py",
@@ -63,3 +89,4 @@
         }
     }
 ]
+

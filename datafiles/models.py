@@ -77,6 +77,7 @@ class Method(models.Model):
         ('R', 'R'),
         ('J', 'Java'),
         ('JL', 'Julia'),
+        ('KT', 'Kotlin'),
     )
     name = models.CharField(max_length=1024,help_text="Method name")
     description = models.CharField(max_length=1024)

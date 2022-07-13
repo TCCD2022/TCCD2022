@@ -100,6 +100,33 @@ def correlation_plot_method(data):
     return {"pdffile":[filename], "format":["pdf"]}
     # pass
 
+def bar_chart_plot_method(data):
+    columns = [c['colname'] for c in data['col_ids']]
+    readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
+    print("readFile...", readFile.iloc[:, 0])
+    x = readFile.iloc[:, 0]
+    y = readFile.iloc[:, 1]
+    print("x...", x)
+    print("y...", y)
+    #x = ['Python', 'R', 'Node.js', 'PHP']
+    ## Declaramos valores para el eje y
+    #y = [50,20,35,47]
+    plt.bar(x, y, color = data["Color"])
+    plt.xlabel(data["titlex"])
+    plt.ylabel(data["titley"])
+    plt.title(data["titleplot"])
+    tmp =  data["filename"].split("/")[:-1]
+    cpath = "/".join(tmp)
+    nameFile = data["filename"].split("/").pop()
+    path = '/code/media/'+ cpath +'/dvg--results-/'+ nameFile + "/"
+    name = path + data["titleplot"]+".pdf"
+    if (os.path.exists(path) == False):
+    	pathDir = Path(path)
+    	pathDir.mkdir(parents=True) 
+    plt.savefig(name, format = "pdf")
+    print("Bar Chart Plot....",name)
+    return {"pdffile":[name], "format":["pdf"]}
+
 def get_filename(data_filename,user_filename):
     tmp =  data_filename.split("/")[:-1]
     currentPath = "/".join(tmp)

@@ -80,7 +80,6 @@ class RunMethodView(View):
 
             # print(new_analysis)
             new_analysis.save()
-
             # call plumber api
             r = requests.post(used_method.url_service,
                               data = {'metadata':request.POST.get('values')}
