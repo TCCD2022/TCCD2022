@@ -3,15 +3,15 @@
 FROM python:latest
 LABEL Description="C++ Build Environment"
 
-COPY ./requirementsc++.txt  /tmp
+COPY ./docker/requirementsc++.txt  /tmp
 
 WORKDIR /tmp
 
 RUN pip3 install -r requirementsc++.txt
 
-COPY ./c++src /tmp/code/
+COPY ./c++src /code/
 
-WORKDIR /tmp/code
+WORKDIR /code
 #ENV HOME /root
 
 #SHELL ["/bin/bash", "-c"]

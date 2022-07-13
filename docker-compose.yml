@@ -63,7 +63,7 @@ services:
       - 5001:5001
     networks:
       - dvyy
-  yc++binding:
+  cbinding:
     build:
       context: .
       dockerfile:  ./docker/Dockerfile.c++bind
