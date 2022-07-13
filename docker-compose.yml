@@ -63,6 +63,18 @@ services:
       - 5001:5001
     networks:
       - dvyy
+  containernnc:
+    build:
+      context: .
+      dockerfile:  ./docker/Dockerfile.pythonservices
+    command: python /code/app.py
+    volumes:
+      - ./NncBarGraphic:/code
+      - mediac:/code/media
+    ports:
+      - 8088:8088
+    networks:
+      - dvyy
 networks:
   dvyy:
     driver: bridge

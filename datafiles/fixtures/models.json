@@ -48,5 +48,18 @@
             "json_schema": "static/jsonforms/visualisation/schema_correlation_python.json",
             "doc_file": "static/mdocs/visualization/Correlation_Plot.pdf "
         }
+    },
+
+    {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 5,
+            "name" : "Nnc Bar Graphic v0.0.0",
+            "description" : "Bar Graphic.",
+            "prog_language" : "Py",
+            "url_service" : "http://containernnc:8088/nncBarGraphic",
+            "json_schema": "static/jsonforms/visualisation/schema_nncBar_py.json",
+            "doc_file": "static/mdocs/visualization/Bar_Graphic_Nnc.pdf "
+        }
     }
 ]
