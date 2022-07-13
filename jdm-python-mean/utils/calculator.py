@@ -59,12 +59,15 @@ class Calculator:
             x_pos = np.arange(len(self._column_names))
 
             fig, ax = plt.subplots()
+
+            fig.set_size_inches(18.5, 15)
+
             rects = ax.bar(x_pos, self._results_array)
             ax.set_title(data["title"])
             ax.set_xlabel(data["caption"])
             ax.set_ylabel('Column mean')
 
-            ax.set_xticks(x_pos, self._column_names)
+            ax.set_xticks(x_pos, self._column_names, rotation=90)
 
             # Add the height to each bar
             for rect in rects:
