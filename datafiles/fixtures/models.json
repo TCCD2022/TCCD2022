@@ -69,7 +69,7 @@
             "prog_language" : "Py",
             "url_service" : "http://pythonservices:5001/corr",
             "json_schema": "static/jsonforms/visualisation/schema_correlation_python.json",
-            "doc_file": "static/mdocs/visualization/Correlation_Plot.pdf "
+            "doc_file": "static/mdocs/visualization/correlation_plot.pdf "
         }
     },
 
@@ -97,6 +97,18 @@
             "json_schema": "static/jsonforms/visualisation/schema_kmeans_c++.json",
             "doc_file": "static/mdocs/visualization/KMeans_Clustering_c++.pdf "
         }
-    }
+    },
+    {
+       "model": "datafiles.Method",
+       "fields": {
+        "id": 10,
+        "name" : "Compare data fjr_jcr V0.0.0",
+        "description" : "Method to graphic data.",
+        "prog_language" : "J",
+        "url_service" : "http://java-springboot:8081/demo/method",
+        "json_schema": "static/jsonforms/visualisation/schema_frequency_fjr_jcr.json",
+        "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
+       }
+}
 ]
 

@@ -1,0 +1,5 @@
+FROM maven:3.8.5
+COPY ./java-springboot-src /code
+WORKDIR /code
+RUN mvn clean package
+ENTRYPOINT ["java","-jar","target/java-springboot-src-0.0.1-SNAPSHOT.war"]
