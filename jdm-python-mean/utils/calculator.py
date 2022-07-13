@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import csv
 import statistics
-
+from datetime import datetime
 import os.path
 import sys
 sys.path.append(".")
@@ -23,11 +23,12 @@ class Calculator:
 
     def mean(self, data):
         # Open the file
-        with open("/code/media/{}".format(data["filename"])) as data_file:
+        with open("/code/media/{}".format(data["filename"]), "r") as data_file:
             # Read the document rows
             csv_reader = csv.DictReader(data_file)
 
-            column_names = [col["colname"] for col in data["col_ids"]]
+            # column_names = [col["colname"] for col in data["col_ids"]]
+            column_names = [col["colname"] for col in data["col_ids"] if col["type"] != "String"]
             self._column_names = column_names
             
             self._data_sets = self.create_data_sets(column_names)
@@ -38,12 +39,11 @@ class Calculator:
                     if column_name in column_names:
                         self._data_sets[column_name].append(row[column_name])
 
-
             # Calculate the mean of each dictionary key
             for key in self._data_sets.keys():
                 # Parse str to float
                 self._data_sets[key] = list(map(float, self._data_sets[key]))
-
+                
                 # Calculate the mean
                 mean = statistics.mean(self._data_sets[key])
 
@@ -58,29 +58,39 @@ class Calculator:
             # Plot data
             x_pos = np.arange(len(self._column_names))
             plt.bar(x_pos, self._results_array)
-            plt.title('Mean - Juan David Murillo')
-            plt.xlabel('Column names')
+            # plt.title('Mean - Juan David Murillo')
+            plt.title(data["title"])
+            plt.xlabel(data["caption"])
             plt.ylabel('Column mean')
 
             plt.xticks(x_pos, self._column_names)
-            plt.show()
+            # plt.show()
 
             # Save plot
             current_path = "/".join(data["filename"].split('/')[:-1])
-            file_name = data["filename"].split('/').pop()
+            current_name = data["filename"].split('/').pop()
 
-            target_path = "/code/media/{}/jdm-mean/{}/".format(current_path, file_name)
+            date = str(datetime.now())
+
+            path_name = "/code/media/{}/dvg--results-/{}/".format(current_path, current_name)
+
+            file_name = path_name + data["title"] + date + ".pdf"
 
             print('filename: {}'.format(file_name))
             print('current_path: {}'.format(current_path))
-            print('target_path: {}'.format(target_path))
+            print('target_path: {}'.format(path_name))
 
-            if not (os.path.exists(target_path)):
+            if not (os.path.exists(path_name)):
                 print('doesnt exists')
-                new_path = Path(target_path)
+                new_path = Path(path_name)
                 new_path.mkdir(parents = True)
 
             plt.savefig(file_name)
+            plt.clf()
+            print("linearRegression....",file_name)
+
+
+            return {"pdffile":[file_name], "format":["pdf"]}
 
     def create_data_sets(self, column_names):
         data_set = dict()
@@ -158,5 +168,5 @@ class Calculator:
 
 
 
-calculator = Calculator()
-calculator.test()
+# calculator = Calculator()
+# calculator.test()

@@ -58,10 +58,14 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile.mean-flask-jdm
-    command: flask run --host=0.0.0.0
+    command: flask run --host=0.0.0.0 --port=5555
     volumes:
       - ./jdm-python-mean:/code
       - mediac:/code/media
+    ports:
+      - 5555:5555
+    networks:
+      - dvyy
   pythonservices:
     build:
       context: .

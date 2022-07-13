@@ -1,10 +1,13 @@
 from flask_restful import Resource, reqparse, abort, request
 import sys
+import json
 sys.path.append("..")
 from utils.calculator import Calculator
 
 # Config the required parameters for the api method
+# mean_put_args = reqparse.RequestParser()
 mean_put_args = reqparse.RequestParser()
+# mean_put_args.add_argument("data", type=str, help="Data array is required", required=True)
 mean_put_args.add_argument("data", type=str, help="Data array is required", required=True)
 
 class MeanApi(Resource):
@@ -73,31 +76,43 @@ class MeanApi(Resource):
     def post(self):
         # Verify the datatype of the request body
         # args = mean_post_args.parse_args()
-        request_data = request.get_json()
+        # request_data = request.get_json()
 
-        if ('data' in request_data):
-            # Get the data
-            data = request_data["data"]
+        # if ('data' in request_data):
+        #     # Get the data
+        #     data = request_data["data"]
 
-            try:
-                data = [float(number) for number in data.split(",")]
+        #     try:
+        #         data = [float(number) for number in data.split(",")]
 
-                print(data)
+        #         print(data)
             
-                self._mean = self._calculator.basic_mean(data)
+        #         self._mean = self._calculator.basic_mean(data)
                 
-                # Create the JSON response
-                json_response = {
-                    "mean": self._mean
-                }
+        #         # Create the JSON response
+        #         json_response = {
+        #             "mean": self._mean
+        #         }
 
-                return json_response, 200
-            except:
-                # Create the JSON response
-                json_response = {
-                    "mean": "Your data is not well structured, remember you must have an array of only numbers"
-                }
-        else:
-           self._calculator.mean(request_data); 
+        #         return json_response, 200
+        #     except:
+        #         # Create the JSON response
+        #         json_response = {
+        #             "mean": "Your data is not well structured, remember you must have an array of only numbers"
+        #         }
+        # else:
+        print("  ")
+        print("  ")
+        print("  ")
+        print("  ")
+
+        values = json.loads(request.form.getlist("metadata"))
+        print(values)
+
+        print("  ")
+        print("  ")
+        print("  ")
+        print("  ")
+        # self._calculator.mean(request_data); 
 
 
