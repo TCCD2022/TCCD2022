@@ -79,7 +79,7 @@
     {
         "model": "datafiles.Method",
         "fields": {
-            "id": 5,
+            "id": 7,
             "name" : "Nnc Bar Graphic v0.0.0",
             "description" : "Bar Graphic.",
             "prog_language" : "Py",
