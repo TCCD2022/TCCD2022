@@ -1,10 +1,11 @@
 # from csv import reader
 from matplotlib import pyplot as plt
+from datetime import datetime
 from pathlib import Path
+
 import numpy as np
 import csv
 import statistics
-from datetime import datetime
 import os.path
 import sys
 sys.path.append(".")
@@ -51,7 +52,6 @@ class Calculator:
                 self._results_array.append(mean)
 
                 # Format the result
-                # self._data_sets[key] = "The mean of the data from column '{}' is: {}".format(key, mean)
                 self._data_sets[key] = mean
 
             
@@ -65,6 +65,8 @@ class Calculator:
             ax.set_ylabel('Column mean')
 
             ax.set_xticks(x_pos, self._column_names)
+
+            # Add the height to each bar
             for rect in rects:
                 height = rect.get_height()
                 ax.text(rect.get_x() + rect.get_width()/2., height,
@@ -81,10 +83,6 @@ class Calculator:
 
             file_name = path_name + data["title"] + date + ".pdf"
 
-            print('filename: {}'.format(file_name))
-            print('current_path: {}'.format(current_path))
-            print('target_path: {}'.format(path_name))
-
             if not (os.path.exists(path_name)):
                 print('doesnt exists')
                 new_path = Path(path_name)
@@ -92,8 +90,6 @@ class Calculator:
 
             plt.savefig(file_name)
             plt.clf()
-            print("linearRegression....",file_name)
-
 
             return {"pdffile":[file_name], "format":["pdf"]}
 
@@ -159,10 +155,6 @@ class Calculator:
 
             target_path = "/code/media/{}/jdm-mean/{}/".format(current_path, file_name)
 
-            print('filename: {}'.format(file_name))
-            print('current_path: {}'.format(current_path))
-            print('target_path: {}'.format(target_path))
-
             if not (os.path.exists(target_path)):
                 print('doesnt exists')
                 new_path = Path(target_path)
@@ -170,8 +162,3 @@ class Calculator:
 
             plt.savefig(file_name)
             print(self._data_sets)
-
-
-
-# calculator = Calculator()
-# calculator.test()
