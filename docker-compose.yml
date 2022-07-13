@@ -73,6 +73,18 @@ services:
       - 5001:5001
     networks:
       - dvyy
+  cbinding:
+    build:
+      context: .
+      dockerfile:  ./docker/Dockerfile.c++bind
+    command: python /code/c++bind.py
+    volumes:
+      - ./c++src:/code
+      - mediac:/code/media
+    ports:
+      - 4001:4001
+    networks:
+      - dvyy
 networks:
   dvyy:
     driver: bridge
