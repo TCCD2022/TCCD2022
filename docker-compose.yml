@@ -64,16 +64,18 @@ services:
       - mediac:/code/media
     ports:
       - 5555:5555
-  mean:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.mean
-    volumes:
-      - mediac:/code/media
-    ports:
-      - 8080:8080
     networks:
       - dvyy
+  # mean:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/Dockerfile.mean
+  #   volumes:
+  #     - mediac:/code/media
+  #   ports:
+  #     - 8080:8080
+  #   networks:
+  #     - dvyy
   pythonservices:
     build:
       context: .
