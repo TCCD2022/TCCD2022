@@ -29,6 +29,9 @@ def bar_chart_plot():
     result = bar_chart_plot_method(values)
     return result
 
+@app.route('/bxp', methods = ['POST'])
+def box_plox():
+    return False
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5001,debug=True)
