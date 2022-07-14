@@ -58,7 +58,7 @@
       "prog_language": "Py",
       "url_service": "http://pythonservices:5001/rp",
       "json_schema": "static/jsonforms/visualisation/schema_rp_python.json",
-      "doc_file": "static/mdocs/visualization/PCA_projection.pdf"
+      "doc_file": "static/mdocs/visualization/RP_Relational_Plot.pdf"
     }
   },
 
@@ -86,9 +86,8 @@
             "json_schema": "static/jsonforms/visualisation/schema_kmeans_c++.json",
             "doc_file": "static/mdocs/visualization/KMeans_Clustering_c++.pdf "
         }
-    }
-
     },
+
     {
        "model": "datafiles.Method",
        "fields": {
@@ -100,6 +99,7 @@
         "json_schema": "static/jsonforms/visualisation/schema_frequency_fjr_jcr.json",
         "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
        }
-}
+      }
+
 ]
 

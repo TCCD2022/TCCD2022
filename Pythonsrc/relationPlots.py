@@ -19,11 +19,16 @@ def relationPlots(data):
 
     sns.set(style="ticks")
     cvs = pandas.read_csv(excelPath)
-
-    sns.relplot(x=x["colname"],
-                y=y["colname"],
-                #hue="old",
-                data=cvs)
+    try:
+        sns.relplot(x=x["colname"],
+        y=y["colname"],
+        hue="old",
+        data=cvs)
+    except:
+        sns.relplot(x=x["colname"],
+                    y=y["colname"],
+                    #hue="old",
+                    data=cvs)
 
     path = data["filename"].split("/")
     pathFinal = ""
