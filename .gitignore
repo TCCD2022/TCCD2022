@@ -179,6 +179,11 @@ flycheck_*.el
 
 staticfiles/
 
+# Java containers
+java-springboot-src/.idea/
+.idea/
+java-springboot-src/method/.gitignore
+
 .idea
 #File 
 *.pdf:Zone.Identifier
