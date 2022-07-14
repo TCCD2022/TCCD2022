@@ -26,19 +26,19 @@ services:
     networks:
       - dvyy
   # uncomment if rstudio is needed
-  rstudio:
-    build:
-      context: ./docker/
-      dockerfile: Dockerfile.rstudio
-    environment:
-      - PASSWORD=password
-    volumes:
-      - .:/home/rstudio/code
-      - mediac:/home/rstudio/data
-    ports:
-      - 8787:8787
-    networks:
-      - dvyy
+  # rstudio:
+  #   build:
+  #     context: ./docker/
+  #     dockerfile: Dockerfile.rstudio
+  #   environment:
+  #     - PASSWORD=password
+  #   volumes:
+  #     - .:/home/rstudio/code
+  #     - mediac:/home/rstudio/data
+  #   ports:
+  #     - 8787:8787
+  #   networks:
+  #     - dvyy
   plumber:
     build:
       context: .
@@ -83,6 +83,17 @@ services:
       - mediac:/code/media
     ports:
       - 4001:4001
+    networks:
+      - dvyy
+  # java SpringBoot conatiner
+  java-springboot:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.java-springboot
+    volumes:
+      - mediac:/code/media
+    ports:
+      - 8081:8081
     networks:
       - dvyy
 networks:
