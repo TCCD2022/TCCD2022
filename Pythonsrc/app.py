@@ -40,6 +40,7 @@ def appController():
     values = json.loads(request.form.getlist("metadata")[0])
     values1 = relationPlots(values)
     return values1
+    
 @app.route('/nncBarGraphic',methods = ['POST'])
 def nnc_bar_graphic():
     values =  json.loads(request.form.getlist("metadata")[0])
