@@ -159,7 +159,8 @@ def histogram_method(data):
     cols = [columnsToFind]
     df = pd.read_csv('/code/media/'+fileName, usecols=cols)
     # Path for savin the figure
-    date = str(datetime.now())
+    date = datetime.now()
+    date = str(date.strftime("%Y%m%d_%H%M%S"))
     user_filename = "histogramPDF"+date
     filename = get_filename(data['filename'],user_filename)
     if 'binsvalue' in data.keys():
