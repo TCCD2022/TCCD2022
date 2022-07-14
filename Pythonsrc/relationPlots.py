@@ -23,12 +23,12 @@ def relationPlots(data):
         sns.relplot(x=x["colname"],
         y=y["colname"],
         hue="old",
-        data=cvs)
+        data=cvs).set(title=data["title"])
     except:
         sns.relplot(x=x["colname"],
                     y=y["colname"],
                     #hue="old",
-                    data=cvs)
+                    data=cvs).set(title=data["title"])
 
     path = data["filename"].split("/")
     pathFinal = ""
