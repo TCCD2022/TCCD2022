@@ -84,7 +84,7 @@
             "description" : "Bar Graphic.",
             "prog_language" : "Py",
             "url_service" : "http://pythonservices:5001/nncBarGraphic",
-            "json_schema": "static/jsonforms/visualisation/schema_nncBar_py.json",
+            "json_schema": "static/jsonforms/visualisation/schema_nncBar_python.json",
             "doc_file": "static/mdocs/visualization/Bar_Graphic_Nnc.pdf "
         }
     }

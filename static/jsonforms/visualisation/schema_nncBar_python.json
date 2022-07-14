@@ -9,7 +9,7 @@
             "title": "Height",
             "description": "Height in centimeters",
             "type": "number",
-            "default": 20,
+            "default": 25,
             "minimum": 10,
             "maximum": 2000,
             "required": true
@@ -18,7 +18,7 @@
             "title": "Width",
             "description": "Width in centimeters",
             "type": "number",
-            "default": 35,
+            "default": 50,
             "minimum": 15,
             "maximum": 2000,
             "required": true
