@@ -41,5 +41,14 @@ def appController():
     values1 = relationPlots(values)
     return values1
 
+@app.route('/vp',methods = ['POST'])
+def violin_plot():
+    values =  json.loads(request.form.getlist("metadata")[0])
+    result = violin_plot_method(values)
+    return result
+
+
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5001,debug=True)
