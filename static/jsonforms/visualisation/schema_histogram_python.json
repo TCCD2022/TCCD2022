@@ -1,0 +1,22 @@
+{
+    "type":"object",
+    "properties": {
+         "binsvalue":{
+	    "title": "Bins",
+	    "description": "Histogram is a mapping of bins (intervals) to frequencies. Empty is auto.",
+	    "type": "number"
+	  },
+          "title": {
+            "title": "Histogram Title",
+            "description": "Histogram title",
+            "type": "string",
+	    "required": true
+          },
+          "variablehistogram": {
+	    "title":"Column to calculate",
+	    "description": "Select column to calculate the histogram",
+	    "enum": ["--No variable--"],
+            "required": true
+	}
+      }
+}
