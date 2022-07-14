@@ -127,34 +127,6 @@ def bar_chart_plot_method(data):
     print("Bar Chart Plot....",name)
     return {"pdffile":[name], "format":["pdf"]}
 
-def nnc_bar_graphic_method(data):
-    '''
-    This method returns a bar graphic with a comparission of the first variable with 2
-    different categories.
-    Parameters:
-        data: Object with the necessary information to construct the graphic: Graphic title,
-        column names, and dimensions for the graphic.
-    '''
-    columns = [c['colname'] for c in data['col_ids']]
-    readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
-    df = readFile [columns]
-    graph = df.groupby(columns[0])[columns[1], columns[2]].mean()
-    graph.plot.barh()
-    plt.title(data["title"])
-    figure = plt.gcf()
-    figure.set_size_inches(data["width"]*0.39,data["height"]*0.39)
-    tmp =  data["filename"].split("/")[:-1]
-    cpath = "/".join(tmp)
-    nameFile = data["filename"].split("/").pop()
-    path = '/code/media/'+ cpath +'/dvg--results-/'+ nameFile + "/"
-    name = path + data["title"]+".pdf"
-    if (os.path.exists(path) == False):
-    	pathDir = Path(path)
-    	pathDir.mkdir(parents=True)
-    plt.savefig(name, format = "pdf")
-    print("Bar Graphic....",name)
-    return {"pdffile":[name], "format":["pdf"]}
-
 def get_filename(data_filename,user_filename):
     tmp =  data_filename.split("/")[:-1]
     currentPath = "/".join(tmp)
@@ -176,35 +148,21 @@ def get_filename(data_filename,user_filename):
 
 def histogram_method(data):
     '''
-    This method returns a histogram plot between the selected variables
+    This method returns a correlation plot between the selected variables
     Parameters:
-        data: Object with the necessary information to construct the plot: file name,
-        column names, plot title, bins, xLabel, YLabel.
+        data: Object with the necessary information to construct the plot: file name, 
+        column names, plot title and dimensions. 
     '''
-    plt.clf()
-    fileName = data["filename"]
-    columnsToFind = data["variablehistogram"]
-    cols = [columnsToFind]
-    df = pd.read_csv('/code/media/'+fileName, usecols=cols)
-    # Path for savin the figure
-    date = datetime.now()
-    date = str(date.strftime("%Y%m%d_%H%M%S"))
-    user_filename = "histogramPDF"+date
-    filename = get_filename(data['filename'],user_filename)
-    if 'binsvalue' in data.keys():
-        binsTotal = data['binsvalue']
-    else:
-        binsTotal = 'auto'
-    # Histogram Plot
-    n, bins, patches=plt.hist(df, bins=binsTotal)
-    plt.ylabel("Probability")
-    if 'title' in data.keys():
-        plt.title(data['title'])
-    else:
-        plt.title("Default title")
 
-    plt.xlabel(columnsToFind)
-    plt.ylabel("count")
-    plt.savefig(filename,format='pdf',bbox_inches='tight')
-    print("Histogram plot....",filename)
-    return {"pdffile":[filename], "format":["pdf"]}
+    print("INGRESO ACA")
+    data = [3,4,2,3,4,5,4,7,8,5,4,6,2,1,0,9,7,6,6,5,4]
+    n, bins, patches=plt.hist(data,bins=20,density=True,color='red')
+    plt.xlabel("Weight")
+    plt.ylabel("Probability")
+    plt.title("Red Histogram Plot")
+    # Path for savin the figure
+    # Correlation Plot
+    plt.savefig("prueba",format='pdf')
+    plt.clf()
+    print("Correlation plot....",filename)
+    return {"pdffile":[filename, "format":["pdf"]}
