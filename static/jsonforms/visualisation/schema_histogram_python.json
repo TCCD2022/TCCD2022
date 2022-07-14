@@ -12,23 +12,11 @@
             "type": "string",
 	    "required": true
           },
-          "xlabel": {
-            "title": "X Label",
-            "description": "X Label for the histogram",
-            "type": "string",
-	    "required": true
-          },
-          "ylabel": {
-            "title": "Y Label",
-            "description": "Y Label for the histogram",
-            "type": "string",
-	    "required": true
-          },
-          "savepdf": {
-            "title": "Save name",
-            "description": "Name to save the file",
-            "type": "string",
-	    "required": true
-          }
+          "variablehistogram": {
+	    "title":"Column to calculate",
+	    "description": "Select column to calculate the histogram",
+	    "enum": ["--No variable--"],
+            "required": true
+	}
       }
 }
