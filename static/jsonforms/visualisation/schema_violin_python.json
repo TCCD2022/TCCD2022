@@ -1,0 +1,15 @@
+{
+    "type":"object",
+    "properties": {
+		"title":{
+		  "title": "Title",
+				"type": "string"
+		},
+		"colour": {
+		  "title":"colour",
+				"description": "A violin represents the distribution, its mean, the interquartile range and the 95% confidence interval into which the maps are distributed.",
+				"enum": ["red","blue","green","yellow"]
+		}
+	  }
+}
+

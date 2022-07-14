@@ -99,7 +99,64 @@ def correlation_plot_method(data):
     print("Correlation plot....",filename)
     return {"pdffile":[filename], "format":["pdf"]}
     # pass
+    
+def violin_plot_method(data):
+    print("--------------- data --------------")
+    print(data)
+    columns = data["col_ids"][:2];
+    x = []
+    y = []
+    indexX = ""
+    indexY = ""
+    nameX = columns[0]["colname"].replace('"','')
+    nameY = columns[1]["colname"].replace('"','')
 
+    with open("/code/media/"+data["filename"], "r") as my_file:
+
+        file_reader = reader(my_file)
+        head =  next(file_reader,None)
+
+        print("HEAD ", head)
+        for i in range(0,len(head)):
+            print("HEAD i ", head[i])
+            if (head[i].replace('"','') == nameX ):
+                indexX= i
+
+            if (head[i].replace('"','') == nameY):
+                indexY = i
+
+        for i in file_reader:
+            array =  i
+            x.append(float(array[indexX]))
+            y.append(float(array[indexY]))
+    colorPlot = data["colour"]
+    titlePlot = data["title"]
+    tmp =  data["filename"].split("/")[:-1]
+    currentPath = "/".join(tmp)
+    currentNameFile = data["filename"].split("/").pop()
+    print("currentPath...", currentPath)
+    print("currentName...", currentNameFile)
+    date = str(datetime.now())
+    pathName = '/code/media/'+ currentPath +'dvg--results-/'+ currentNameFile + "/"
+    fileName = pathName + data["title"]+ date +".pdf" 
+    if (os.path.exists(pathName) == False):
+        path = Path(pathName)
+        path.mkdir(parents=True)
+    #Plot
+      
+    df = DataFrame({"v1" : x , "v2" : y})
+    #sns.violinplot(df  , color=colorPlot).set(title=titlePlot)
+    sns.violinplot(data = df, y = "Price", x = "Quantity", hue = "Product")
+    # sns.regplot(x, y,color=colorPlot).set(title=tit
+    plt.xlabel(nameX)
+    plt.ylabel(nameY)
+    plt.savefig(fileName)
+    plt.clf()
+    print("violin plot....",fileName)
+    
+    return {"pdffile":[fileName], "format":["pdf"]}
+
+    
 def bar_chart_plot_method(data):
     columns = [c['colname'] for c in data['col_ids']]
     readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
