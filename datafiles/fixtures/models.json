@@ -67,15 +67,28 @@
         "model": "datafiles.Method",
         "fields": {
             "id": 6,
+            "name" : "Histogram v0.0.0",
+            "description" : "Histogram Plot.",
+            "prog_language" : "Py",
+            "url_service" : "http://pythonservices:5001/histogram",
+            "json_schema": "static/jsonforms/visualisation/schema_histogram_python.json",
+            "doc_file": "static/mdocs/visualization/Histogram.pdf "
+	  }
+      },
+      
+      {
+	"model": "datafiles.Method",
+        "fields": {
+            "id": 7,
             "name" : "KMeans v0.0.0",
             "description" : "KMeans Custering.",
             "prog_language" : "C+",
             "url_service" : "http://cbind:4001/kmeans",
             "json_schema": "static/jsonforms/visualisation/schema_kmeans_c++.json",
             "doc_file": "static/mdocs/visualization/KMeans_Clustering_c++.pdf "
-        }
-    },
-    {
+	  }
+       },
+       {
        "model": "datafiles.Method",
        "fields": {
         "id": 10,
