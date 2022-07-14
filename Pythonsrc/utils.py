@@ -138,7 +138,10 @@ def nnc_bar_graphic_method(data):
     columns = [c['colname'] for c in data['col_ids']]
     readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
     df = readFile [columns]
-    graph = df.groupby(columns[0])[columns[1], columns[2]].mean()
+    if (data["variable"] in columns and data["variable1"] in columns and data["variable2"] in columns):
+        graph = df.groupby(data["variable"])[data["variable1"], data["variable2"]].mean()
+    else:
+        graph = df.groupby(columns[0])[columns[1], columns[2]].mean()
     graph.plot.barh()
     plt.title(data["title"])
     figure = plt.gcf()

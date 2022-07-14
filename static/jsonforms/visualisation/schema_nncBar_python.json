@@ -5,6 +5,21 @@
             "title": "Title",
             "type": "string"
         },
+        "variable": {
+            "title": "Categorical variable (column name)",
+            "type": "string",
+            "required": true
+        },
+        "variable1": {
+            "title": "Variable 1 (column name)",
+            "type": "string",
+            "required": true
+        },
+        "variable2": {
+            "title": "Variable 2 (column name)",
+            "type": "string",
+            "required": true
+        },
         "height": {
             "title": "Height",
             "description": "Height in centimeters",
