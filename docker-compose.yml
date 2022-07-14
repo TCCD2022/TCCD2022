@@ -101,16 +101,16 @@ services:
     networks:
       - dvyy
   # java SpringBoot conatiner
-  java-springboot:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.java-springboot
-    volumes:
-      - mediac:/code/media
-    ports:
-      - 8081:8081
-    networks:
-      - dvyy
+  # java-springboot:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/Dockerfile.java-springboot
+  #   volumes:
+  #     - mediac:/code/media
+  #   ports:
+  #     - 8081:8081
+  #   networks:
+  #     - dvyy
 networks:
   dvyy:
     driver: bridge
