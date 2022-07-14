@@ -52,7 +52,7 @@
   {
     "model": "datafiles.Method",
     "fields": {
-      "id": 7,
+      "id": 11,
       "name": "RP v0.0.0",
       "description": "Relational plots.",
       "prog_language": "Py",
@@ -74,11 +74,23 @@
             "doc_file": "static/mdocs/visualization/bar_chart_Plot.pdf "
         }
      },
-     
      {
         "model": "datafiles.Method",
         "fields": {
             "id": 6,
+            "name" : "Histogram v0.0.0",
+            "description" : "Histogram Plot.",
+            "prog_language" : "Py",
+            "url_service" : "http://pythonservices:5001/histogram",
+            "json_schema": "static/jsonforms/visualisation/schema_histogram_python.json",
+            "doc_file": "static/mdocs/visualization/Histogram.pdf "
+	    }
+      },
+     
+     {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 7,
             "name" : "KMeans v0.0.0",
             "description" : "KMeans Custering.",
             "prog_language" : "C+",
@@ -87,7 +99,6 @@
             "doc_file": "static/mdocs/visualization/KMeans_Clustering_c++.pdf "
         }
     },
-
     {
        "model": "datafiles.Method",
        "fields": {
@@ -100,6 +111,5 @@
         "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
        }
       }
-
 ]
 
