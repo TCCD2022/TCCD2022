@@ -100,6 +100,33 @@ def correlation_plot_method(data):
     return {"pdffile":[filename], "format":["pdf"]}
     # pass
 
+def bar_chart_plot_method(data):
+    columns = [c['colname'] for c in data['col_ids']]
+    readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
+    print("readFile...", readFile.iloc[:, 0])
+    x = readFile.iloc[:, 0]
+    y = readFile.iloc[:, 1]
+    print("x...", x)
+    print("y...", y)
+    #x = ['Python', 'R', 'Node.js', 'PHP']
+    ## Declaramos valores para el eje y
+    #y = [50,20,35,47]
+    plt.bar(x, y, color = data["Color"])
+    plt.xlabel(data["titlex"])
+    plt.ylabel(data["titley"])
+    plt.title(data["titleplot"])
+    tmp =  data["filename"].split("/")[:-1]
+    cpath = "/".join(tmp)
+    nameFile = data["filename"].split("/").pop()
+    path = '/code/media/'+ cpath +'/dvg--results-/'+ nameFile + "/"
+    name = path + data["titleplot"]+".pdf"
+    if (os.path.exists(path) == False):
+    	pathDir = Path(path)
+    	pathDir.mkdir(parents=True) 
+    plt.savefig(name, format = "pdf")
+    print("Bar Chart Plot....",name)
+    return {"pdffile":[name], "format":["pdf"]}
+
 def get_filename(data_filename,user_filename):
     tmp =  data_filename.split("/")[:-1]
     currentPath = "/".join(tmp)
@@ -118,3 +145,38 @@ def get_filename(data_filename,user_filename):
         path = Path(pathName)
         path.mkdir(parents=True)
     return fileName
+
+def histogram_method(data):
+    '''
+    This method returns a histogram plot between the selected variables
+    Parameters:
+        data: Object with the necessary information to construct the plot: file name, 
+        column names, plot title, bins, xLabel, YLabel. 
+    '''
+    plt.clf()
+    fileName = data["filename"]
+    columnsToFind = data["variablehistogram"]
+    cols = [columnsToFind]
+    df = pd.read_csv('/code/media/'+fileName, usecols=cols)
+    # Path for savin the figure
+    date = datetime.now()
+    date = str(date.strftime("%Y%m%d_%H%M%S"))
+    user_filename = "histogramPDF"+date
+    filename = get_filename(data['filename'],user_filename)
+    if 'binsvalue' in data.keys():
+        binsTotal = data['binsvalue']
+    else:
+        binsTotal = 'auto'
+    # Histogram Plot
+    n, bins, patches=plt.hist(df, bins=binsTotal)
+    plt.ylabel("Probability")
+    if 'title' in data.keys():
+        plt.title(data['title'])
+    else:
+        plt.title("Default title")
+
+    plt.xlabel(columnsToFind)
+    plt.ylabel("count")
+    plt.savefig(filename,format='pdf',bbox_inches='tight')
+    print("Histogram plot....",filename)
+    return {"pdffile":[filename], "format":["pdf"]}

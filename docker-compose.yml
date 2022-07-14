@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.3'
 
 services:
   web:
@@ -26,19 +26,19 @@ services:
     networks:
       - dvyy
   # uncomment if rstudio is needed
-  rstudio:
-    build:
-      context: ./docker/
-      dockerfile: Dockerfile.rstudio
-    environment:
-      - PASSWORD=password
-    volumes:
-      - .:/home/rstudio/code
-      - mediac:/home/rstudio/data
-    ports:
-      - 8787:8787
-    networks:
-      - dvyy
+  # rstudio:
+  #   build:
+  #     context: ./docker/
+  #     dockerfile: Dockerfile.rstudio
+  #   environment:
+  #     - PASSWORD=password
+  #   volumes:
+  #     - .:/home/rstudio/code
+  #     - mediac:/home/rstudio/data
+  #   ports:
+  #     - 8787:8787
+  #   networks:
+  #     - dvyy
   plumber:
     build:
       context: .
@@ -51,6 +51,7 @@ services:
       - 8181:8181
     networks:
       - dvyy
+<<<<<<< HEAD
   pythonslope:
     build:
       context: .
@@ -58,6 +59,13 @@ services:
     command: python /code/app.py
     volumes:
       - ./Pythonslopesrc:/code
+=======
+  mean:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.mean
+    volumes:
+>>>>>>> b9857b8de8cc7c82b26b9b88bb926a1a3d497c89
       - mediac:/code/media
     ports:
       - 8080:8080
@@ -73,6 +81,29 @@ services:
       - mediac:/code/media
     ports:
       - 5001:5001
+    networks:
+      - dvyy
+  cbinding:
+    build:
+      context: .
+      dockerfile:  ./docker/Dockerfile.c++bind
+    command: python /code/c++bind.py
+    volumes:
+      - ./c++src:/code
+      - mediac:/code/media
+    ports:
+      - 4001:4001
+    networks:
+      - dvyy
+  # java SpringBoot conatiner
+  java-springboot:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.java-springboot
+    volumes:
+      - mediac:/code/media
+    ports:
+      - 8081:8081
     networks:
       - dvyy
 networks:
