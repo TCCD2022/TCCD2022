@@ -1,26 +1,26 @@
 {
-    "type":"object",
+    "type": "object",
     "properties": {
-        "title":{
-			"title": "Title",
-			"type": "string"
-		},
-        "height":{
+        "title": {
+            "title": "Title",
+            "type": "string"
+        },
+        "height": {
             "title": "Height",
             "description": "Height in centimeters",
             "type": "number",
-            "default":20,
-            "minimum":10,
-            "maximum":2000,
+            "default": 20,
+            "minimum": 10,
+            "maximum": 2000,
             "required": true
         },
-        "width":{
+        "width": {
             "title": "Width",
             "description": "Width in centimeters",
             "type": "number",
-            "default":35,
-            "minimum":15,
-            "maximum":2000,
+            "default": 35,
+            "minimum": 15,
+            "maximum": 2000,
             "required": true
         }
     }
