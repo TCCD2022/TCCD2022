@@ -31,6 +31,7 @@ def bar_chart_plot():
 
 @app.route('/vp',methods = ['POST'])
 def violin_plot():
+    print("entra al puto endpoint ")
     values =  json.loads(request.form.getlist("metadata")[0])
     result = violin_plot_method(values)
     return result
