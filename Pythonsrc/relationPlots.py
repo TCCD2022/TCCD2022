@@ -22,7 +22,7 @@ def relationPlots(data):
 
     sns.relplot(x=x["colname"],
                 y=y["colname"],
-                hue="old",
+                #hue="old",
                 data=cvs)
 
     path = data["filename"].split("/")
