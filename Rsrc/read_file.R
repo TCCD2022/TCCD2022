@@ -127,6 +127,7 @@ function(metadata){
   print(filenamepdf)
   cmwidth <- mdat$width
   cmheight <- mdat$height
+
   
   ggsave(filenamepdf, width = cmwidth, height = cmheight, units = "cm")
 

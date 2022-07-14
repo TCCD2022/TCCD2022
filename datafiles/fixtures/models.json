@@ -1,5 +1,5 @@
 [
-    {
+     {
 	"model": "datafiles.Method",
 	"fields": {
 	    "id": 1,
@@ -49,6 +49,18 @@
             "doc_file": "static/mdocs/visualization/correlation_plot.pdf "
         }
     },
+  {
+    "model": "datafiles.Method",
+    "fields": {
+      "id": 11,
+      "name": "RP v0.0.0",
+      "description": "Relational plots.",
+      "prog_language": "Py",
+      "url_service": "http://pythonservices:5001/rp",
+      "json_schema": "static/jsonforms/visualisation/schema_rp_python.json",
+      "doc_file": "static/mdocs/visualization/RP_Relational_Plot.pdf"
+    }
+  },
 
     {
         "model": "datafiles.Method",
@@ -62,7 +74,6 @@
             "doc_file": "static/mdocs/visualization/bar_chart_Plot.pdf "
         }
      },
-     
      {
         "model": "datafiles.Method",
         "fields": {
@@ -73,11 +84,12 @@
             "url_service" : "http://pythonservices:5001/histogram",
             "json_schema": "static/jsonforms/visualisation/schema_histogram_python.json",
             "doc_file": "static/mdocs/visualization/Histogram.pdf "
-	  }
+
+	    }
       },
-      
-      {
-	"model": "datafiles.Method",
+     
+     {
+        "model": "datafiles.Method",
         "fields": {
             "id": 7,
             "name" : "KMeans v0.0.0",
@@ -99,6 +111,6 @@
         "json_schema": "static/jsonforms/visualisation/schema_frequency_fjr_jcr.json",
         "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
        }
-}
+      }
 ]
 
