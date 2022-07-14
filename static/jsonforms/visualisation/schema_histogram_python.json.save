@@ -1,0 +1,18 @@
+{
+    "type":"object",
+    "properties": {
+        "title": {
+            "title": "Histogram title",
+            "description": "Title for the histogram",
+            "type": "string"
+          },
+          "save": {
+            "title": "Save as 2",
+            "description": "Name for saving the image",
+            "type": "string"
+          },
+          "":{
+
+
+      }
+}
