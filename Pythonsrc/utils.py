@@ -8,6 +8,7 @@ from pathlib import Path
 import os
 import json
 from datetime import datetime
+from random import  randint
 """
  This method returns the plot corresponding to the linear
  regression of the first two columns indicated in the received parameter
@@ -128,28 +129,27 @@ def bar_chart_plot_method(data):
     return {"pdffile":[name], "format":["pdf"]}
 
 def box_plot_method(data):
-    columns = [col['colname'] for col in data['col_ids']]
-    readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
-    print("readfile...", readFile.iloc[:,0])
-    x_labels = readFile.iloc[:, 0]
-    y_labels = readFile.iloc[:, 1]
-    print("x...", x_labels)
-    print("y...", y_labels)
-    plt.bar(x_labels,y_labels,color = data["color"])
-    plt.xlabel(data["titlex"])
-    plt.ylabel(data["titley"])
-    plt.title(data["titleplot"])
-    tmp = data["filename"].split("/")[:-1]
-    cpath = "/".join(tmp)
-    nameFile = data["filename"].split("/").pop()
-    path = '/code/media'+cpath + '/dvg--results-'+nameFile + "/"
-    name = path + data["titleplot"]+".pdf"
-    if(os.path.exists(path) == False):
-        pathDir = Path(path)
-        pathDir.mkdir(parents=True)
-    plt.savefig(name, format='pdf')
-    print("Boxplot...", name)
-    return {"pdffile":[name], "format":["pdf"]}
+    fileName = data['filename']
+    cols = [col['colname'] for col in data['col_ids']]
+    df = pd.read_csv('/code/media/'+fileName, usecols=cols)
+    colors = ['cyan', 'lightblue', 'lightgreen', 'tan', 'pink','red', 'green', 'white', 'gray']
+    if 'save' in data.keys(): user_filename = data['save']
+    else: user_filename = ''
+    fileName = get_filename(data['filename'], user_filename)
+    fig = plt.figure(figsize=(10,7))
+    box = plt.boxplot(data, notch=True, patch_artist=True)
+    for box in box['boxes']:
+        box.set_facecolor(color=colors[randint(0, len(colors) - 1)])
+    if 'title' in data.keys():
+        plt.title(data['title'])
+    if 'titlex' in data['titlex']:
+        plt.xlabel(data['titlex'])
+    if 'titley' in data['titley']:
+        plt.ylabel(data['titley'])
+    plt.savefig(fileName, format = 'pdf', bbox_inches='tight' )
+    plt.clf()
+    print("Boxplot...", fileName)
+    return {"pdffile":[fileName], "format":["pdf"]}
 
 def get_filename(data_filename,user_filename):
     tmp =  data_filename.split("/")[:-1]

@@ -85,8 +85,7 @@
       "json_schema": "static/jsonforms/visualisation/schema_boxplot_python.json",
       "doc_file": "static/mdocs/visualization/box_plot_pdf.pdf"
     }
-  }
-     },
+  },
      {
         "model": "datafiles.Method",
         "fields": {

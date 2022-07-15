@@ -12,11 +12,6 @@
     "titley": {
       "title": "Y axis title",
       "type": "string"
-    },
-    "color": {
-      "title": "colour",
-      "description": "A boxplot is a method for graphically demonstrating the locality, spread and skewness groups of numerical data through their quartiles.",
-      "enum": ["Red", "Blue", "Green", "Yellow"]
     }
   }
 }
