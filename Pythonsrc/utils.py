@@ -127,6 +127,21 @@ def bar_chart_plot_method(data):
     print("Bar Chart Plot....",name)
     return {"pdffile":[name], "format":["pdf"]}
 
+def box_plot_method(data):
+    columns = [col['colname'] for col in data['col_ids']]
+    if 'save' in data.keys(): user_filename = data['save']
+    else: user_filename = ''
+    readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
+    filename = get_filename(data['filename'], user_filename)
+    x_labels = readFile.iloc[:,0]
+    y_labels = readFile.iloc[:,1]
+    plt.boxplot(column = columns, color = data["color"])
+    if 'title' in data.keys(): plt.title(data["titleplot"])
+    plt.savefig(filename, format='pdf', bbox_inches='tight')
+    plt.clf()
+    print("Boxplot...", filename)
+    return {"pdffile":[filename], "format":["pdf"]}
+
 def get_filename(data_filename,user_filename):
     tmp =  data_filename.split("/")[:-1]
     currentPath = "/".join(tmp)

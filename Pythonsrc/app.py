@@ -31,7 +31,10 @@ def bar_chart_plot():
 
 @app.route('/bxp', methods = ['POST'])
 def box_plox():
-    return False
+    values = json.loads(request.form.getlist("metadata")[0])
+    result = box_plot_method(values)
+    return result
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5001,debug=True)
