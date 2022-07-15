@@ -132,15 +132,26 @@ def box_plot_method(data):
     if 'save' in data.keys(): user_filename = data['save']
     else: user_filename = ''
     readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
-    filename = get_filename(data['filename'], user_filename)
-    x_labels = readFile.iloc[:,0]
-    y_labels = readFile.iloc[:,1]
+    print("readfile...", readFile.iloc[:,0])
+    x_labels = readFile.iloc[:, 0]
+    y_labels = readFile.iloc[:, 1]
+    print("x...", x_labels)
+    print("y...", y_labels)
+    plt.xlabel(data["titlex"])
+    plt.ylabel(data["titley"])
+    plt.title(data["titleplot"])
+    tmp = data["filename"].split("/")[:-1]
+    cpath = "/".join(tmp)
+    nameFile = data["filename"].split("/").pop()
+    path = '/code/media'+cpath + '/dvg--results-'+nameFile + "/"
+    name = path + data["titleplot"]+".pdf"
     plt.boxplot(column = columns, color = data["color"])
-    if 'title' in data.keys(): plt.title(data["titleplot"])
-    plt.savefig(filename, format='pdf', bbox_inches='tight')
-    plt.clf()
-    print("Boxplot...", filename)
-    return {"pdffile":[filename], "format":["pdf"]}
+    if(os.path.exists(path) == False):
+        pathDir = Path(path)
+        pathDir.mkdir(parents=True)
+    plt.savefig(name, format='pdf')
+    print("Boxplot...", name)
+    return {"pdffile":[name], "format":["pdf"]}
 
 def get_filename(data_filename,user_filename):
     tmp =  data_filename.split("/")[:-1]

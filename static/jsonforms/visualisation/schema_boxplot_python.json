@@ -5,10 +5,18 @@
       "title": "Title",
       "type": "string"
     },
-    "colour": {
+    "titlex": {
+      "title": "X axis title",
+      "type": "string"
+    },
+    "titleplot": {
+      "title": "title of the plot",
+      "type": "string"
+    },
+    "color": {
       "title": "colour",
       "description": "A boxplot is a method for graphically demonstrating the locality, spread and skewness groups of numerical data through their quartiles.",
-      "enum": ["red", "blue", "green", "yellow"]
+      "enum": ["Red", "Blue", "Green", "Yellow"]
     }
   }
 }
