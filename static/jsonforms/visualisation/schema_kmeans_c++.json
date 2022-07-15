@@ -1,0 +1,15 @@
+{
+    "type":"object",
+    "properties": {
+		"title":{
+		  "title": "Title",
+				"type": "string"
+		},
+		"colour": {
+		  "title":"colour",
+				"description": "Cluster center colour.",
+				"enum": ["red","blue","green"]
+		}
+	  }
+}
+
