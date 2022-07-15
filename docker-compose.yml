@@ -100,7 +100,7 @@ services:
       - 4001:4001
     networks:
       - dvyy
-  java SpringBoot conatiner
+  # java SpringBoot conatiner
   java-springboot:
     build:
       context: .
