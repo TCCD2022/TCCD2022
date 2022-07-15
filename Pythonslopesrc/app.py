@@ -19,6 +19,13 @@ def helloslope():
     return "helloWorld"
 
 
+"""
+    post: /slope
+    This method calculates the equation of a line given two points p1(x1, y1), p2(x2, y2),
+    graphs it and generates a pdf file with the graph.
+"""
+
+
 @app.route('/slope', methods=['POST'])
 def slope():
     values = json.loads(request.form.getlist("metadata")[0])
@@ -26,22 +33,25 @@ def slope():
     cols = [col['colname'] for col in values['col_ids']]
     df = pd.read_csv('/code/media/'+file_name, usecols=cols)
 
-    x1 = df[cols[0]][0]
-    x2 = df[cols[0]][1]
+    # x1 = df[cols[0]][0]
+    # x2 = df[cols[0]][1]
 
-    y1 = df[cols[1]][0]
-    y2 = df[cols[1]][1]
+    # y1 = df[cols[1]][0]
+    # y2 = df[cols[1]][1]
 
-    m = (y2-y1)/(x2-x1)
-    b = y1 - m*x1
+    # m = (y2-y1)/(x2-x1)
+    # b = y1 - m*x1
 
-    plt.plot(df[cols[0]], df[cols[1]])
-    print(m)
-    print(b)
+    # print(m)
+    # print(b)
+
+    x = df[cols[0]]  # Array with x values of csv
+    y = df[cols[1]]  # Array with y values of csv
+
+    plt.plot(x, y)
 
     tmp = file_name.split("/")[:-1]
     current_path = "/".join(tmp)
-    # Take the file name without extension
     current_name_file = file_name.split("/")[-1].split('.')[0]
 
     date = str(datetime.now())
