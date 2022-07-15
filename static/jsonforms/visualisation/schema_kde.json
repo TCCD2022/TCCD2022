@@ -1,0 +1,21 @@
+{
+    "type":"object",
+    "properties": {
+		"title":{
+			"title": "Title",
+			"type": "string"
+		},
+		"xaxislabel":{
+			"title": "X Axis Label",
+			"type": "string"
+		},
+		"image_width":{
+			"title": "Image Width (inches)",
+			"type": "string"
+		},
+		"image_height":{
+			"title": "Image Heigt (inches)",
+			"type": "string"
+		}
+    }
+}
