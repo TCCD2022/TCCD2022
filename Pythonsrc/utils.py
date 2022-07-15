@@ -129,14 +129,13 @@ def bar_chart_plot_method(data):
 
 def box_plot_method(data):
     columns = [col['colname'] for col in data['col_ids']]
-    if 'save' in data.keys(): user_filename = data['save']
-    else: user_filename = ''
     readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
     print("readfile...", readFile.iloc[:,0])
     x_labels = readFile.iloc[:, 0]
     y_labels = readFile.iloc[:, 1]
     print("x...", x_labels)
     print("y...", y_labels)
+    plt.bar(x_labels,y_labels,color = data["color"])
     plt.xlabel(data["titlex"])
     plt.ylabel(data["titley"])
     plt.title(data["titleplot"])
@@ -145,7 +144,6 @@ def box_plot_method(data):
     nameFile = data["filename"].split("/").pop()
     path = '/code/media'+cpath + '/dvg--results-'+nameFile + "/"
     name = path + data["titleplot"]+".pdf"
-    plt.boxplot(column = columns, color = data["color"])
     if(os.path.exists(path) == False):
         pathDir = Path(path)
         pathDir.mkdir(parents=True)
