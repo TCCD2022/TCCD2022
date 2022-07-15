@@ -48,6 +48,19 @@
             "doc_file": "static/mdocs/visualization/correlation_plot.pdf "
         }
     },
+  {
+    "model": "datafiles.Method",
+    "fields": {
+      "id": 11,
+      "name": "RP v0.0.0",
+      "description": "Relational plots.",
+      "prog_language": "Py",
+      "url_service": "http://pythonservices:5001/rp",
+      "json_schema": "static/jsonforms/visualisation/schema_rp_python.json",
+      "doc_file": "static/mdocs/visualization/RP_Relational_Plot.pdf"
+    }
+  },
+
     {
         "model": "datafiles.Method",
         "fields": {
@@ -60,7 +73,6 @@
             "doc_file": "static/mdocs/visualization/bar_chart_Plot.pdf "
         }
      },
-     
      {
         "model": "datafiles.Method",
         "fields": {
@@ -71,11 +83,12 @@
             "url_service" : "http://pythonservices:5001/histogram",
             "json_schema": "static/jsonforms/visualisation/schema_histogram_python.json",
             "doc_file": "static/mdocs/visualization/Histogram.pdf "
-	  }
+
+	    }
       },
-      
-      {
-	"model": "datafiles.Method",
+     
+     {
+        "model": "datafiles.Method",
         "fields": {
             "id": 7,
             "name" : "KMeans v0.0.0",
@@ -86,18 +99,6 @@
             "doc_file": "static/mdocs/visualization/KMeans_Clustering_c++.pdf "
         }
     },
-	{
-		"model": "datafiles.Method",
-		"fields": {
-			"id": 7,
-			"name": "Mean-JDM v0.0.0",
-			"description": "Calculate mean using flask.",
-			"prog_language": "Py",
-			"url_service": "http://mean-jdm:5555/mean",
-			"json_schema": "static/jsonforms/visualisation/schema_mean_jdm.json",
-			"doc_file": "static/mdocs/visualization/JDM-Mean.pdf "
-		}
-	},
     {
        "model": "datafiles.Method",
        "fields": {
@@ -109,6 +110,18 @@
         "json_schema": "static/jsonforms/visualisation/schema_frequency_fjr_jcr.json",
         "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
        }
-    }
+    },
+    {
+		"model": "datafiles.Method",
+		"fields": {
+			"id": 7,
+			"name": "Mean-JDM v0.0.0",
+			"description": "Calculate mean using flask.",
+			"prog_language": "Py",
+			"url_service": "http://mean-jdm:5555/mean",
+			"json_schema": "static/jsonforms/visualisation/schema_mean_jdm.json",
+			"doc_file": "static/mdocs/visualization/JDM-Mean.pdf "
+		}
+	}
 ]
 
