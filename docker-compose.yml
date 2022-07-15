@@ -66,16 +66,16 @@ services:
       - 5555:5555
     networks:
       - dvyy
-  # mean:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/Dockerfile.mean
-  #   volumes:
-  #     - mediac:/code/media
-  #   ports:
-  #     - 8080:8080
-  #   networks:
-  #     - dvyy
+  mean:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.mean
+    volumes:
+      - mediac:/code/media
+    ports:
+      - 8080:8080
+    networks:
+      - dvyy
   pythonservices:
     build:
       context: .
@@ -100,17 +100,17 @@ services:
       - 4001:4001
     networks:
       - dvyy
-  # java SpringBoot conatiner
-  # java-springboot:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/Dockerfile.java-springboot
-  #   volumes:
-  #     - mediac:/code/media
-  #   ports:
-  #     - 8081:8081
-  #   networks:
-  #     - dvyy
+  java SpringBoot conatiner
+  java-springboot:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.java-springboot
+    volumes:
+      - mediac:/code/media
+    ports:
+      - 8081:8081
+    networks:
+      - dvyy
 networks:
   dvyy:
     driver: bridge
