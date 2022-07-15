@@ -4,14 +4,6 @@
     "title": {
       "title": "Title",
       "type": "string"
-    },
-    "titlex": {
-      "title": "X axis title",
-      "type": "string"
-    },
-    "titley": {
-      "title": "Y axis title",
-      "type": "string"
     }
   }
 }
