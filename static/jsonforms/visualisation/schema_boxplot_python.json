@@ -9,8 +9,8 @@
       "title": "X axis title",
       "type": "string"
     },
-    "titleplot": {
-      "title": "title of the plot",
+    "titley": {
+      "title": "Y axis title",
       "type": "string"
     },
     "color": {
