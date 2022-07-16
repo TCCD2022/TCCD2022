@@ -180,3 +180,27 @@ def histogram_method(data):
     plt.savefig(filename,format='pdf',bbox_inches='tight')
     print("Histogram plot....",filename)
     return {"pdffile":[filename], "format":["pdf"]}
+
+
+def kde_method(data):
+    if data["filename"]:
+        readFile = pd.read_csv('/code/media/'+data["filename"])
+    else:
+        print("Datos no ingresados")
+    print(readFile)
+    if(data["image_width"] and data["image_height"]):
+        sns.set(rc={'figure.figsize':(data["image_width"],data["image_height"])})
+    if(data["title"] and data["xaxislabel"]):
+        plot=sns.kdeplot(data=readFile, shade=True).set( xlabel = data["xaxislabel"], ylabel = "Density", title=data["title"])
+    else:
+        plot=sns.kdeplot(data=readFile, shade=True)
+    tmp =  data["filename"].split("/")[:-1]
+    cpath = "/".join(tmp)
+    nameFile = data["title"]
+    path = '/code/media/'+ cpath +'/dvg--results-/'+ nameFile + "/"
+    name = path + data["title"]+".pdf"
+    if (os.path.exists(path) == False):
+    	pathDir = Path(path)
+    	pathDir.mkdir(parents=True) 
+    plt.savefig(name, format = "pdf",dpi=300)
+    return {"pdffile":[name], "format":["pdf"]}

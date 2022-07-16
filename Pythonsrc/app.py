@@ -40,6 +40,12 @@ def appController():
     values = json.loads(request.form.getlist("metadata")[0])
     values1 = relationPlots(values)
     return values1
+    
+@app.route('/kde',methods = ['POST'])
+def kde_plot():
+    values =  json.loads(request.form.getlist("metadata")[0])
+    result = kde_method(values)
+    return result
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5001,debug=True)

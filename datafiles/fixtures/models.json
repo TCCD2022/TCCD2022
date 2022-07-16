@@ -110,7 +110,19 @@
         "url_service" : "http://java-springboot:8081/demo/method",
         "json_schema": "static/jsonforms/visualisation/schema_frequency_fjr_jcr.json",
         "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
-       }
-      }
+     }
+	},
+	{
+       "model": "datafiles.Method",
+       "fields": {
+        "id": 8,
+        "name" : "KDE Method V_1.0",
+        "description" : "Kernel Density Estimation is a method to estimate de density of data",
+        "prog_language" : "Py",
+        "url_service" : "http://pythonservices:5001/kde",
+        "json_schema": "static/jsonforms/visualisation/schema_kde.json",
+        "doc_file": "static/mdocs/visualization/Kernel_density_plot.pdf"
+     }
+	}
 ]
 
