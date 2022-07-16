@@ -99,6 +99,24 @@ def correlation_plot_method(data):
     print("Correlation plot....",filename)
     return {"pdffile":[filename], "format":["pdf"]}
     # pass
+    
+def violin_plot_method(data):
+    fileName = data["filename"]
+    cols = [col['colname'] for col in data['col_ids']]
+    df = pd.read_csv('/code/media/'+fileName, usecols=cols)
+    if 'save' in data.keys():
+       user_filename = data['save']
+    else:
+        user_filename=''
+    filename = get_filename(data['filename'],user_filename)
+    plt.style.use('seaborn')
+    sns.violinplot(data = df.corr(), color = data['colour'] )
+    if 'title' in data.keys():
+        plt.title(data['title'])
+    plt.savefig(filename,format='pdf',bbox_inches='tight')
+    plt.clf()
+    print("Violin plot....",filename)
+    return {"pdffile":[filename], "format":["pdf"]}
 
 def bar_chart_plot_method(data):
     columns = [c['colname'] for c in data['col_ids']]
