@@ -19,19 +19,20 @@ h3 {
 
 #filedocuments {
     height: 60vh;
-    overflow-y:scroll;
-    overflow-x:scroll;
+    overflow-y: scroll;
+    overflow-x: scroll;
 }
 
- /* Remove default bullets */
-ul, #mydocs {
+/* Remove default bullets */
+ul,
+#mydocs {
     list-style-type: none;
 }
 
 /* Remove margins and padding from the parent ul */
 #mydocs {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 /* Style the caret/arrow */
@@ -48,15 +49,15 @@ ul, #mydocs {
 
 /* Create the caret/arrow with a unicode, and style it */
 .caret::before {
-  content: "\25B6";
-  color: black;
-  display: inline-flex;
-  margin-right: 6px;
+    content: "\25B6";
+    color: black;
+    display: inline-flex;
+    margin-right: 6px;
 }
 
 /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
 .caret-down::before {
-  transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 /* Hide the nested list */
@@ -86,8 +87,8 @@ ul, #mydocs {
 /* } */
 
 .parent {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
     display: inline-flex;
     display: -webkit-flex;
     display: flex;
@@ -97,10 +98,10 @@ ul, #mydocs {
 }
 
 .ihide {
-    display: none;   
+    display: none;
 }
 
-.fcol:hover + .ihide,
+.fcol:hover+.ihide,
 .ihide:hover {
     display: flex;
 }
@@ -110,3 +111,16 @@ ul, #mydocs {
 /*   background: lightgrey; */
 /*   border: 1px solid grey; */
 /* } */
+
+.jdm_mean-container {
+    border: 2px solid black;
+    margin-top: 40px;
+    padding: 15px;
+    text-align: center;
+}
+
+.jdm_mean-loading,
+.jdm_mean-result {
+    display: none;
+    margin-top: 10px;
+}

@@ -51,6 +51,21 @@ services:
       - 8181:8181
     networks:
       - dvyy
+  mean-jdm:
+    environment:
+      - FLASK_APP=/code/app
+      - FLASK_ENV=development
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.mean-flask-jdm
+    command: flask run --host=0.0.0.0 --port=5555
+    volumes:
+      - ./jdm-python-mean:/code
+      - mediac:/code/media
+    ports:
+      - 5555:5555
+    networks:
+      - dvyy
   mean:
     build:
       context: .

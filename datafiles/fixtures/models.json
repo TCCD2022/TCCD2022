@@ -109,9 +109,9 @@
             "url_service" : "http://cbind:4001/kmeans",
             "json_schema": "static/jsonforms/visualisation/schema_kmeans_c++.json",
             "doc_file": "static/mdocs/visualization/KMeans_Clustering_c++.pdf "
-	  }
-       },
-       {
+        }
+    },
+    {
        "model": "datafiles.Method",
        "fields": {
         "id": 10,
@@ -122,6 +122,18 @@
         "json_schema": "static/jsonforms/visualisation/schema_frequency_fjr_jcr.json",
         "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
        }
-      }
+    },
+    {
+		"model": "datafiles.Method",
+		"fields": {
+			"id": 7,
+			"name": "Mean-JDM v0.0.0",
+			"description": "Calculate mean using flask.",
+			"prog_language": "Py",
+			"url_service": "http://mean-jdm:5555/mean",
+			"json_schema": "static/jsonforms/visualisation/schema_mean_jdm.json",
+			"doc_file": "static/mdocs/visualization/JDM-Mean.pdf "
+		}
+	}
 ]
 

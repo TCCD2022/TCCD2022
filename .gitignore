@@ -178,6 +178,7 @@ flycheck_*.el
 .dir-locals.el
 
 staticfiles/
+__pycache__/*
 
 # Java containers
 java-springboot-src/.idea/
