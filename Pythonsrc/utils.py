@@ -8,6 +8,7 @@ from pathlib import Path
 import os
 import json
 from datetime import datetime
+from random import randint
 """
  This method returns the plot corresponding to the linear
  regression of the first two columns indicated in the received parameter
@@ -126,6 +127,27 @@ def bar_chart_plot_method(data):
     plt.savefig(name, format = "pdf")
     print("Bar Chart Plot....",name)
     return {"pdffile":[name], "format":["pdf"]}
+
+def box_plot_method(data):
+    fileName = data["filename"]
+    cols = [col['colname'] for col in data['col_ids']]
+    df = pd.read_csv('/code/media/' + fileName, usecols=cols)
+    colors = ['cyan', 'lightblue', 'lightgreen', 'tan', 'pink', 'red', 'green', 'white', 'gray']
+    if 'save' in data.keys():
+        user_filename = data['save']
+    else:
+        user_filename = ''
+    fileName = get_filename(data['filename'], user_filename)
+    fig = plt.figure(figsize=(10, 7))
+    box = plt.boxplot(df, notch=True, patch_artist=True)
+    for box in box['boxes']:
+        box.set_facecolor(color=colors[randint(0, len(colors) - 1)])
+    if 'title' in data.keys():
+        plt.title(data['title'])
+    plt.savefig(fileName, format='pdf', bbox_inches='tight')
+    plt.clf()
+    print("Boxplot...", fileName)
+    return {"pdffile": [fileName], "format": ["pdf"]}
 
 def nnc_bar_graphic_method(data):
     '''

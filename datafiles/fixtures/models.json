@@ -72,6 +72,20 @@
         }
     },
     {
+     },
+    {
+          "model": "datafiles.Method",
+          "fields": {
+              "id": 9,
+              "name" : "Boxplot v0.0.0",
+              "description" : "Box plot",
+              "prog_language" : "Py",
+              "url_service" : "http://pythonservices:5001/bxp",
+              "json_schema": "static/jsonforms/visualisation/schema_boxplot_python.json",
+              "doc_file": "static/mdocs/visualization/box_plot.pdf "
+          }
+    },
+     {
         "model": "datafiles.Method",
         "fields": {
             "id": 6,
