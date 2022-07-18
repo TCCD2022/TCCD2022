@@ -29,12 +29,17 @@ def bar_chart_plot():
     result = bar_chart_plot_method(values)
     return result
 
+@app.route('/bxp',methods = ['POST'])
+def box_plox():
+    values = json.loads(request.form.getlist("metadata")[0])
+    result = box_plot_method(values)
+    return result
 @app.route('/histogram',methods = ['POST'])
 def histogram_plot():
     values =  json.loads(request.form.getlist("metadata")[0])
     result = histogram_method(values)
     return result
-    
+
 @app.route('/rp',methods = ['POST'])
 def appController():
     values = json.loads(request.form.getlist("metadata")[0])

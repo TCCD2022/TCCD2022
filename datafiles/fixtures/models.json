@@ -1,5 +1,5 @@
 [
-     {
+    {
 	"model": "datafiles.Method",
 	"fields": {
 	    "id": 1,
@@ -23,7 +23,6 @@
 	    "doc_file": "static/mdocs/visualization/PCA_projection.pdf "
 	}
     },
-
     {
         "model": "datafiles.Method",
         "fields": {
@@ -74,6 +73,18 @@
             "doc_file": "static/mdocs/visualization/bar_chart_Plot.pdf "
         }
      },
+    {
+          "model": "datafiles.Method",
+          "fields": {
+              "id": 9,
+              "name" : "Boxplot v0.0.0",
+              "description" : "Box plot",
+              "prog_language" : "Py",
+              "url_service" : "http://pythonservices:5001/bxp",
+              "json_schema": "static/jsonforms/visualisation/schema_boxplot_python.json",
+              "doc_file": "static/mdocs/visualization/box_plot.pdf "
+          }
+    },
      {
         "model": "datafiles.Method",
         "fields": {
@@ -87,7 +98,7 @@
 
 	    }
       },
-     
+
      {
         "model": "datafiles.Method",
         "fields": {
