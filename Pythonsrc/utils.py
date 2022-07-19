@@ -149,6 +149,37 @@ def box_plot_method(data):
     print("Boxplot...", fileName)
     return {"pdffile": [fileName], "format": ["pdf"]}
 
+def nnc_bar_graphic_method(data):
+    '''
+    This method returns a bar graphic with a comparission of the first variable with 2
+    different categories.
+    Parameters:
+        data: Object with the necessary information to construct the graphic: Graphic title,
+        column names, and dimensions for the graphic.
+    '''
+    columns = [c['colname'] for c in data['col_ids']]
+    readFile = pd.read_csv('/code/media/'+data["filename"], usecols=columns)
+    df = readFile [columns]
+    if (data["variable"] in columns and data["variable1"] in columns and data["variable2"] in columns):
+        graph = df.groupby(data["variable"])[data["variable1"], data["variable2"]].mean()
+    else:
+        graph = df.groupby(columns[0])[columns[1], columns[2]].mean()
+    graph.plot.barh()
+    plt.title(data["title"])
+    figure = plt.gcf()
+    figure.set_size_inches(data["width"]*0.39,data["height"]*0.39)
+    tmp =  data["filename"].split("/")[:-1]
+    cpath = "/".join(tmp)
+    nameFile = data["filename"].split("/").pop()
+    path = '/code/media/'+ cpath +'/dvg--results-/'+ nameFile + "/"
+    name = path + data["title"]+".pdf"
+    if (os.path.exists(path) == False):
+    	pathDir = Path(path)
+    	pathDir.mkdir(parents=True)
+    plt.savefig(name, format = "pdf")
+    print("Bar Graphic....",name)
+    return {"pdffile":[name], "format":["pdf"]}
+
 def get_filename(data_filename,user_filename):
     tmp =  data_filename.split("/")[:-1]
     currentPath = "/".join(tmp)
@@ -172,8 +203,8 @@ def histogram_method(data):
     '''
     This method returns a histogram plot between the selected variables
     Parameters:
-        data: Object with the necessary information to construct the plot: file name, 
-        column names, plot title, bins, xLabel, YLabel. 
+        data: Object with the necessary information to construct the plot: file name,
+        column names, plot title, bins, xLabel, YLabel.
     '''
     plt.clf()
     fileName = data["filename"]

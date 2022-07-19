@@ -1,127 +1,134 @@
 [
     {
-	"model": "datafiles.Method",
-	"fields": {
-	    "id": 1,
-	    "name" : "Extract metadata v0.0.0",
-	    "description" : "Extracts number of rows and columns, and finds column types",
-	    "prog_language" : "R",
-	    "url_service" : "http://plumber:8181/coltypes",
-	    "json_schema" : "static/jsonforms/standard/schema_extract_metadata.json",
-	    "doc_file": "static/mdocs/standard/Extract_metadata.pdf"
-	}
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 1,
+            "name": "Extract metadata v0.0.0",
+            "description": "Extracts number of rows and columns, and finds column types",
+            "prog_language": "R",
+            "url_service": "http://plumber:8181/coltypes",
+            "json_schema": "static/jsonforms/standard/schema_extract_metadata.json",
+            "doc_file": "static/mdocs/standard/Extract_metadata.pdf"
+        }
     },
     {
-	"model": "datafiles.Method",
-	"fields": {
-	    "id": 2,
-	    "name" : "PCA v0.0.0",
-	    "description" : "Principal component Analysis.",
-	    "prog_language" : "R",
-	    "url_service" : "http://plumber:8181/pca",
-    	    "json_schema": "static/jsonforms/visualisation/schema_pca_projection_r.json",
-	    "doc_file": "static/mdocs/visualization/PCA_projection.pdf "
-	}
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 2,
+            "name": "PCA v0.0.0",
+            "description": "Principal component Analysis.",
+            "prog_language": "R",
+            "url_service": "http://plumber:8181/pca",
+            "json_schema": "static/jsonforms/visualisation/schema_pca_projection_r.json",
+            "doc_file": "static/mdocs/visualization/PCA_projection.pdf "
+        }
     },
     {
         "model": "datafiles.Method",
         "fields": {
             "id": 3,
-            "name" : "LR v0.0.0",
-            "description" : "Linear Regression plot.",
-            "prog_language" : "Py",
-            "url_service" : "http://pythonservices:5001/lr",
+            "name": "LR v0.0.0",
+            "description": "Linear Regression plot.",
+            "prog_language": "Py",
+            "url_service": "http://pythonservices:5001/lr",
             "json_schema": "static/jsonforms/visualisation/schema_lr_python.json",
             "doc_file": "static/mdocs/visualization/Linear_Regression_Plot_pdf.pdf "
         }
     },
-
     {
         "model": "datafiles.Method",
         "fields": {
             "id": 4,
-            "name" : "Correlation v0.0.0",
-            "description" : "Correlation Plot.",
-            "prog_language" : "Py",
-            "url_service" : "http://pythonservices:5001/corr",
+            "name": "Correlation v0.0.0",
+            "description": "Correlation Plot.",
+            "prog_language": "Py",
+            "url_service": "http://pythonservices:5001/corr",
             "json_schema": "static/jsonforms/visualisation/schema_correlation_python.json",
             "doc_file": "static/mdocs/visualization/correlation_plot.pdf "
         }
     },
-  {
-    "model": "datafiles.Method",
-    "fields": {
-      "id": 11,
-      "name": "RP v0.0.0",
-      "description": "Relational plots.",
-      "prog_language": "Py",
-      "url_service": "http://pythonservices:5001/rp",
-      "json_schema": "static/jsonforms/visualisation/schema_rp_python.json",
-      "doc_file": "static/mdocs/visualization/RP_Relational_Plot.pdf"
-    }
-  },
-
+    {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 11,
+            "name": "RP v0.0.0",
+            "description": "Relational plots.",
+            "prog_language": "Py",
+            "url_service": "http://pythonservices:5001/rp",
+            "json_schema": "static/jsonforms/visualisation/schema_rp_python.json",
+            "doc_file": "static/mdocs/visualization/RP_Relational_Plot.pdf"
+        }
+    },
     {
         "model": "datafiles.Method",
         "fields": {
             "id": 5,
-            "name" : "BarChart v0.0.0",
-            "description" : "Bar Chart Plot.",
-            "prog_language" : "Py",
-            "url_service" : "http://pythonservices:5001/bc",
+            "name": "BarChart v0.0.0",
+            "description": "Bar Chart Plot.",
+            "prog_language": "Py",
+            "url_service": "http://pythonservices:5001/bc",
             "json_schema": "static/jsonforms/visualisation/schema_bar_chart_python.json",
             "doc_file": "static/mdocs/visualization/bar_chart_Plot.pdf "
         }
-     },
-    {
-          "model": "datafiles.Method",
-          "fields": {
-              "id": 9,
-              "name" : "Boxplot v0.0.0",
-              "description" : "Box plot",
-              "prog_language" : "Py",
-              "url_service" : "http://pythonservices:5001/bxp",
-              "json_schema": "static/jsonforms/visualisation/schema_boxplot_python.json",
-              "doc_file": "static/mdocs/visualization/box_plot.pdf "
-          }
     },
-     {
+    {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 9,
+            "name": "Boxplot v0.0.0",
+            "description": "Box plot",
+            "prog_language": "Py",
+            "url_service": "http://pythonservices:5001/bxp",
+            "json_schema": "static/jsonforms/visualisation/schema_boxplot_python.json",
+            "doc_file": "static/mdocs/visualization/box_plot.pdf "
+        }
+    },
+    {
         "model": "datafiles.Method",
         "fields": {
             "id": 6,
-            "name" : "Histogram v0.0.0",
-            "description" : "Histogram Plot.",
-            "prog_language" : "Py",
-            "url_service" : "http://pythonservices:5001/histogram",
+            "name": "Histogram v0.0.0",
+            "description": "Histogram Plot.",
+            "prog_language": "Py",
+            "url_service": "http://pythonservices:5001/histogram",
             "json_schema": "static/jsonforms/visualisation/schema_histogram_python.json",
             "doc_file": "static/mdocs/visualization/Histogram.pdf "
-
-	    }
-      },
-
-     {
+        }
+    },
+    {
         "model": "datafiles.Method",
         "fields": {
             "id": 7,
-            "name" : "KMeans v0.0.0",
-            "description" : "KMeans Custering.",
-            "prog_language" : "C+",
-            "url_service" : "http://cbind:4001/kmeans",
+            "name": "KMeans v0.0.0",
+            "description": "KMeans Custering.",
+            "prog_language": "C+",
+            "url_service": "http://cbind:4001/kmeans",
             "json_schema": "static/jsonforms/visualisation/schema_kmeans_c++.json",
             "doc_file": "static/mdocs/visualization/KMeans_Clustering_c++.pdf "
-	  }
-       },
-       {
-       "model": "datafiles.Method",
-       "fields": {
-        "id": 10,
-        "name" : "Compare data fjr_jcr V0.0.0",
-        "description" : "Method to graphic data.",
-        "prog_language" : "J",
-        "url_service" : "http://java-springboot:8081/demo/method",
-        "json_schema": "static/jsonforms/visualisation/schema_frequency_fjr_jcr.json",
-        "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
-       }
-      }
+        }
+    },
+    {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 8,
+            "name": "Nnc Bar Graphic v0.0.0",
+            "description": "Bar Graphic.",
+            "prog_language": "Py",
+            "url_service": "http://pythonservices:5001/nncBarGraphic",
+            "json_schema": "static/jsonforms/visualisation/schema_nncBar_python.json",
+            "doc_file": "static/mdocs/visualization/Bar_Graphic_Nnc.pdf "
+        }
+    },
+    {
+        "model": "datafiles.Method",
+        "fields": {
+            "id": 10,
+            "name": "Compare data fjr_jcr V0.0.0",
+            "description": "Method to graphic data.",
+            "prog_language": "J",
+            "url_service": "http://java-springboot:8081/demo/method",
+            "json_schema": "static/jsonforms/visualisation/schema_frequency_fjr_jcr.json",
+            "doc_file": "static/mdocs/visualization/MBG_projection.pdf"
+        }
+    }
 ]
-
