@@ -144,6 +144,14 @@ def box_plot_method(data):
         box.set_facecolor(color=colors[randint(0, len(colors) - 1)])
     if 'title' in data.keys():
         plt.title(data['title'])
+    if 'xlabel' in data.keys():
+        plt.xlabel(data['xlabel'])
+    else:
+        plt.xlabel(data['Num. of Boxplot'])
+    if 'ylabel' in data.keys():
+        plt.ylabel(data['ylabel'])
+    else:
+        plt.ylabel('Quantity')
     plt.savefig(fileName, format='pdf', bbox_inches='tight')
     plt.clf()
     print("Boxplot...", fileName)

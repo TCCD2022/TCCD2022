@@ -4,6 +4,14 @@
     "title": {
       "title": "Title",
       "type": "string"
+    },
+    "xlabel": {
+      "title": "X-label",
+      "type": "string"
+    },
+    "ylabel": {
+      "title": "Y-Label",
+      "type": "string"
     }
   }
 }
