@@ -29,17 +29,28 @@ def bar_chart_plot():
     result = bar_chart_plot_method(values)
     return result
 
+@app.route('/bxp',methods = ['POST'])
+def box_plox():
+    values = json.loads(request.form.getlist("metadata")[0])
+    result = box_plot_method(values)
+    return result
 @app.route('/histogram',methods = ['POST'])
 def histogram_plot():
     values =  json.loads(request.form.getlist("metadata")[0])
     result = histogram_method(values)
     return result
-    
+
 @app.route('/rp',methods = ['POST'])
 def appController():
     values = json.loads(request.form.getlist("metadata")[0])
     values1 = relationPlots(values)
     return values1
+
+@app.route('/nncBarGraphic',methods = ['POST'])
+def nnc_bar_graphic():
+    values =  json.loads(request.form.getlist("metadata")[0])
+    result = nnc_bar_graphic_method(values)
+    return result
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5001,debug=True)
