@@ -51,11 +51,13 @@ services:
       - 8181:8181
     networks:
       - dvyy
-  mean:
+  pythonslope:
     build:
       context: .
-      dockerfile: ./docker/Dockerfile.mean
+      dockerfile:  ./docker/Dockerfile.pythonslope
+    command: python /code/app.py
     volumes:
+      - ./Pythonslopesrc:/code
       - mediac:/code/media
     ports:
       - 8080:8080
