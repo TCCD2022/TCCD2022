@@ -29,17 +29,30 @@ def bar_chart_plot():
     result = bar_chart_plot_method(values)
     return result
 
+<<<<<<< HEAD
+=======
+@app.route('/bxp',methods = ['POST'])
+def box_plox():
+    values = json.loads(request.form.getlist("metadata")[0])
+    result = box_plot_method(values)
+    return result
+>>>>>>> 671156ea2352de2520e4d684cc9c5204d73634bd
 @app.route('/histogram',methods = ['POST'])
 def histogram_plot():
     values =  json.loads(request.form.getlist("metadata")[0])
     result = histogram_method(values)
     return result
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 671156ea2352de2520e4d684cc9c5204d73634bd
 @app.route('/rp',methods = ['POST'])
 def appController():
     values = json.loads(request.form.getlist("metadata")[0])
     values1 = relationPlots(values)
     return values1
+<<<<<<< HEAD
     
 @app.route('/kde',methods = ['POST'])
 def kde_plot():
@@ -49,3 +62,14 @@ def kde_plot():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=5001,debug=True)
+=======
+
+@app.route('/nncBarGraphic',methods = ['POST'])
+def nnc_bar_graphic():
+    values =  json.loads(request.form.getlist("metadata")[0])
+    result = nnc_bar_graphic_method(values)
+    return result
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0",port=5001,debug=True)
+>>>>>>> 671156ea2352de2520e4d684cc9c5204d73634bd

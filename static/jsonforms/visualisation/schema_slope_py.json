@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "caption": {
+      "title": "Caption",
+      "type": "string"
+    }
+  }
+}
