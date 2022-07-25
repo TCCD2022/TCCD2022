@@ -115,7 +115,7 @@
 	{
        "model": "datafiles.Method",
        "fields": {
-        "id": 8,
+        "id": 17,
         "name" : "KDE Method V_1.0",
         "description" : "Kernel Density Estimation is a method to estimate de density of data",
         "prog_language" : "Py",
